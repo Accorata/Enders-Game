@@ -63,28 +63,29 @@ public class Camera {
   }
   private PVector projPoint(PVector point) {
     PVector fin = new PVector (0, 0);
+    float rotatedZ = magProject(point, sight);
     if (point.z <= -1 * fromScreen) {
       fin.add(viewX.copy().mult(fromScreen * point.x + width/2));
       fin.add(viewY.copy().mult(fromScreen * point.y + height/2));
     } else {      
-      fin.add(viewX.copy().mult(fromScreen * point.x / (point.z + fromScreen) + width/2));
-      fin.add(viewY.copy().mult(fromScreen * point.y / (point.z + fromScreen) + height/2));
+      fin.add(viewX.copy().mult(fromScreen * point.x / (rotatedZ + fromScreen) + width/2));
+      fin.add(viewY.copy().mult(fromScreen * point.y / (rotatedZ + fromScreen) + height/2));
     }
     return fin;
   }
   public void proj (PVector test) {
-    PVector perspective = pos.copy();//.add(sight);
-    float xTheta = radians(90);
-    if (test.x != 0) {
-      xTheta = acos(perspective.z/test.x);
-    } 
-    float x = test.x*sin(xTheta) + width/2;
-    float yTheta = radians(90);
-    if (test.y != 0) {
-      yTheta = acos(perspective.z/test.y);
-    } 
-    float y = test.y*sin(yTheta) + height/2;
-    circle(x, y, 3);
+    //PVector perspective = pos.copy();//.add(sight);
+    //float xTheta = radians(90);
+    //if (test.x != 0) {
+    //  xTheta = acos(perspective.z/test.x);
+    //} 
+    //float x = test.x*sin(xTheta) + width/2;
+    //float yTheta = radians(90);
+    //if (test.y != 0) {
+    //  yTheta = acos(perspective.z/test.y);
+    //} 
+    //float y = test.y*sin(yTheta) + height/2;
+    circle(test.x+width/2, test.y+height/2, 3);
   }
 
   public void addTriangle (Triangle a) {
