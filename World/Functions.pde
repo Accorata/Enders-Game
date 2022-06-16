@@ -6,6 +6,10 @@ float magProject(PVector u, PVector v) {
   return u.dot(v)/v.mag();
 }
 
+PVector project(PVector u, PVector v) {
+  return v.copy().mult(u.dot(v)/sq(v.mag()));
+}
+
 void rotateAxisOnX(PVector axis, float deg) {
   if (deg != 0) {
     float rad = radians(deg);

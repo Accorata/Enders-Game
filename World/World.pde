@@ -1,8 +1,8 @@
 import java.util.Collections;
 Camera cam = new Camera();
-PVector a = new PVector (100, 100, 0);
-PVector b = new PVector (-100, 0, 0);
-PVector c = new PVector (100, 0, 0);
+PVector a = new PVector (100, 100, 100);
+PVector b = new PVector (-100, 0, 100);
+PVector c = new PVector (100, 0, 100);
 Triangle one = new Triangle(a, b, c, color(0, 10));
 
 void setup () {
@@ -25,6 +25,12 @@ void keyPressed() {
     break;
   case 'l':
     cam.rotateY(-10);
+    break;
+  case 'i':
+    cam.rotateX(-10);
+    break;
+  case 'k':
+    cam.rotateX(10);
     break;
   }
 }
