@@ -59,6 +59,7 @@ public class Camera {
     for (PVector point : t.getPoints()) {
       points.add(projPoint(point));
     }
+    fill(t.clr);
     triangle(points.get(0).x, points.get(0).y, points.get(1).x, points.get(1).y, points.get(2).x, points.get(2).y);
   }
   private PVector projPoint(PVector point) {
