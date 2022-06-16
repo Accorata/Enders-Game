@@ -94,8 +94,12 @@ public class Camera {
   }
   public void rotateX (float deg) {
     rotateAxisOnX(viewX, deg);
+    rotateAxisOnX(viewY, deg);
+    rotateAxisOnX(sight, deg);
   }
   public void rotateY (float deg) {
+    rotateAxisOnY(viewX, deg);
     rotateAxisOnY(viewY, deg);
+    rotateAxisOnY(sight, deg);
   }
 }
