@@ -9,8 +9,8 @@ void setup () {
   size(400, 400);
   cam.addTriangle(one);
   cam.display();
-  fill(0);
-  cam.proj(a);
-  cam.proj(b);
-  cam.proj(c);
+  //fill(0);
+  //cam.proj(a);
+  //cam.proj(b);
+  //cam.proj(c);
 }

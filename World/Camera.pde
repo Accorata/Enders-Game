@@ -38,21 +38,26 @@ public class Camera {
     }
   }
   private void project (Triangle t) {
-    PVector[] points = new PVector[3];
+    ArrayList<PVector> points = new ArrayList<PVector>();
     PVector perspective = pos.copy();//.add(sight);
     for (PVector point : t.getPoints()) {
-      float xTheta = radians(90);
-      if (point.x != 0) {
-        xTheta = acos(perspective.z/point.x);
-      } 
-      float x = point.x*sin(xTheta) + width/2;
-      float yTheta = radians(90);
-      if (point.y != 0) {
-        yTheta = acos(perspective.z/point.y);
-      } 
-      float y = point.y*sin(yTheta) + height/2;
+      points.add(projPoint(point, perspective));
     }
-    triangle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
+    triangle(points.get(0).x, points.get(0).y, points.get(1).x, points.get(1).y, points.get(2).x, points.get(2).y);
+  }
+  private PVector projPoint(PVector point, PVector perspective) {
+    PVector fin = new PVector (0, 0);
+    float xTheta = radians(90);
+    if (point.x != 0) {
+      xTheta = acos(perspective.z/point.x);
+    } 
+    fin.x = point.x*sin(xTheta) + width/2;
+    float yTheta = radians(90);
+    if (point.y != 0) {
+      yTheta = acos(perspective.z/point.y);
+    } 
+    fin.y = point.y*sin(yTheta) + height/2;
+    return fin;
   }
   public void proj (PVector test) {
     PVector perspective = pos.copy();//.add(sight);
@@ -79,7 +84,7 @@ public class Camera {
     //}
     for (Triangle t : Triangles) {
       //if (t.ID != -1) 
-      proj(t);
+      project(t);
     }
   }
   public void addTriangle (Triangle a) {
