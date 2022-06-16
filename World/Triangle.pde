@@ -12,7 +12,7 @@ public class Triangle implements Comparable<Triangle> {
     this.center = calcCenter();
   }
 
-  PVector calcCenter () {
+  private PVector calcCenter () {
     PVector cent = new PVector(0, 0, 0);
     for (PVector point : points) {
       cent.add(point);
@@ -20,13 +20,13 @@ public class Triangle implements Comparable<Triangle> {
     cent.div(3);
     return cent;
   }
-  void update_close() {
+  public void update_close() {
     this.center = calcCenter();
     this.close = dist(center, new PVector(0, 0, -300));
   }
 
   @Override
-    int compareTo(Triangle obj) {
+    public int compareTo(Triangle obj) {
     if (this.close > obj.close) return -1;
     if (this.close < obj.close) return 1;
     return 0;

@@ -1,13 +1,15 @@
 public class Camera {
   private PVector loc;
   private ArrayList<Triangle> Triangles = new ArrayList<Triangle>();
-  private float fromScreen = 300;
+  private float fromScreen = 1000000;
+  private PVector pos = new PVector(0,0,0);
+  private PVector sight = new PVector(0,0,1000);
 
   public Camera() {
-    this.loc = new PVector(0, 0, -300);
+    this.loc = new PVector(0, 0, -fromScreen);
   }
 
-  void proj(Triangle t) {
+  private void proj(Triangle t) {
     if (!(t.points[0].z < loc.z && t.points[1].z < -1 * fromScreen && t.points[2].z < -1 * fromScreen)) {
       float[][] pT = new float[3][2];
       int count = 0;
@@ -35,7 +37,13 @@ public class Camera {
       triangle(pT[0][0], pT[0][1], pT[1][0], pT[1][1], pT[2][0], pT[2][1]);
     }
   }
-  void display() {
+  public void proj (PVector test) {
+    PVector perspective = pos.copy().add(sight);
+    float x = 10;
+    float y = 10;
+    circle(x, y, 10);
+  }
+  public void display() {
     for (Triangle t : Triangles) {
       t.update_close();
     }
@@ -49,7 +57,7 @@ public class Camera {
       proj(t);
     }
   }
-  void addTriangle (Triangle a) {
+  public void addTriangle (Triangle a) {
     Triangles.add(a);
   }
 }
