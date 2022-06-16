@@ -63,13 +63,15 @@ public class Camera {
   }
   private PVector projPoint(PVector point) {
     PVector fin = new PVector (0, 0);
+    float rotatedX = magProject(point, viewX);
+    float rotatedY = magProject(point, viewY);
     float rotatedZ = magProject(point, sight);
     if (point.z <= -1 * fromScreen) {
-      fin.add(viewX.copy().mult(fromScreen * point.x + width/2));
-      fin.add(viewY.copy().mult(fromScreen * point.y + height/2));
+      fin.add(viewX.copy().mult(fromScreen * rotatedX + width/2));
+      fin.add(viewY.copy().mult(fromScreen * rotatedY + height/2));
     } else {      
-      fin.add(viewX.copy().mult(fromScreen * point.x / (rotatedZ + fromScreen) + width/2));
-      fin.add(viewY.copy().mult(fromScreen * point.y / (rotatedZ + fromScreen) + height/2));
+      fin.add(viewX.copy().mult(fromScreen * rotatedX / (rotatedZ + fromScreen) + width/2));
+      fin.add(viewY.copy().mult(fromScreen * rotatedY / (rotatedZ + fromScreen) + height/2));
     }
     return fin;
   }
@@ -87,8 +89,13 @@ public class Camera {
     //float y = test.y*sin(yTheta) + height/2;
     circle(test.x+width/2, test.y+height/2, 3);
   }
-
   public void addTriangle (Triangle a) {
     Triangles.add(a);
+  }
+  public void rotateX (float deg) {
+    rotateAxisOnX(viewX, deg);
+  }
+  public void rotateY (float deg) {
+    rotateAxisOnY(viewY, deg);
   }
 }
