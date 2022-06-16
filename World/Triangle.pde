@@ -24,7 +24,9 @@ public class Triangle implements Comparable<Triangle> {
     this.center = calcCenter();
     this.close = dist(center, new PVector(0, 0, -300));
   }
-
+  public PVector[] getPoints() {
+    return points;
+  }
   @Override
     public int compareTo(Triangle obj) {
     if (this.close > obj.close) return -1;

@@ -2,8 +2,8 @@ public class Camera {
   private PVector loc;
   private ArrayList<Triangle> Triangles = new ArrayList<Triangle>();
   private float fromScreen = 1000000;
-  private PVector pos = new PVector(0,0,0);
-  private PVector sight = new PVector(0,0,1000);
+  private PVector pos = new PVector(0, 0, 0);
+  private PVector sight = new PVector(0, 0, 1000);
 
   public Camera() {
     this.loc = new PVector(0, 0, -fromScreen);
@@ -36,6 +36,23 @@ public class Camera {
       //if (!quantize) noStroke();
       triangle(pT[0][0], pT[0][1], pT[1][0], pT[1][1], pT[2][0], pT[2][1]);
     }
+  }
+  private void project (Triangle t) {
+    PVector[] points = new PVector[3];
+    PVector perspective = pos.copy();//.add(sight);
+    for (PVector point : t.getPoints()) {
+      float xTheta = radians(90);
+      if (point.x != 0) {
+        xTheta = acos(perspective.z/point.x);
+      } 
+      float x = point.x*sin(xTheta) + width/2;
+      float yTheta = radians(90);
+      if (point.y != 0) {
+        yTheta = acos(perspective.z/point.y);
+      } 
+      float y = point.y*sin(yTheta) + height/2;
+    }
+    triangle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
   }
   public void proj (PVector test) {
     PVector perspective = pos.copy();//.add(sight);
