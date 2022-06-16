@@ -38,10 +38,18 @@ public class Camera {
     }
   }
   public void proj (PVector test) {
-    PVector perspective = pos.copy().add(sight);
-    float x = 10;
-    float y = 10;
-    circle(x, y, 10);
+    PVector perspective = pos.copy();//.add(sight);
+    float xTheta = radians(90);
+    if (test.x != 0) {
+      xTheta = acos(perspective.z/test.x);
+    } 
+    float x = test.x*sin(xTheta) + width/2;
+    float yTheta = radians(90);
+    if (test.y != 0) {
+      yTheta = acos(perspective.z/test.y);
+    } 
+    float y = test.y*sin(yTheta) + height/2;
+    circle(x, y, 3);
   }
   public void display() {
     for (Triangle t : Triangles) {
