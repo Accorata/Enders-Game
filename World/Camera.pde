@@ -2,11 +2,11 @@ public class Camera {
   private PVector loc;
   private ArrayList<Triangle> Triangles = new ArrayList<Triangle>();
   private float fromScreen = 300;
-  
+
   public Camera() {
     this.loc = new PVector(0, 0, -300);
   }
-  
+
   void proj(Triangle t) {
     if (!(t.points[0].z < loc.z && t.points[1].z < -1 * fromScreen && t.points[2].z < -1 * fromScreen)) {
       float[][] pT = new float[3][2];
