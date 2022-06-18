@@ -11,16 +11,24 @@ void setup () {
   size(800, 800);
   //cam.addTriangle(one);
 }
-PVector sight = new PVector(0, 300);
-PVector xAxis = new PVector(150, 0);
+PVector sight = new PVector(0, -300);
+PVector xAxis = new PVector(-150, 0);
 void draw () {
   background(255);
   fill(0);
+  strokeWeight(1);
   circle(width/2, height/2, 10);
   noFill();
   circle(width/2, height/2, 600);
+  strokeWeight(2);
   line(width/2, height/2, width/2+sight.x, height/2+sight.y);
-  line(width/2+sight.x, height/2+sight.y, width/2+sight.x+xAxis.x, height/2+sight.y+xAxis.y);
+  line(width/2+sight.x-xAxis.x, height/2+sight.y-xAxis.y, width/2+sight.x+xAxis.x, height/2+sight.y+xAxis.y);
+  strokeWeight(5);
+  PVector object = new PVector(780, 200);
+  point(object.x, object.y);
+  strokeWeight(0.5);
+  line(width/2+sight.x-xAxis.x*100, height/2+sight.y-xAxis.y*100, width/2+sight.x+xAxis.x*100, height/2+sight.y+xAxis.y*100);
+  line(width/2, height/2, object.x, object.y);
   //PVector a = new PVector(0,200);
   //PVector b = new PVector(100,100);
   //PVector p = project(b, a);
@@ -38,14 +46,16 @@ void keyPressed() {
   switch(key) {
   case 'j':
     cam.rotateY(10);
+    rotateAxisOnZ(sight, -4);
+    rotateAxisOnZ(xAxis, -4);
     break;
   case 'l':
     cam.rotateY(-10);
+    rotateAxisOnZ(sight, 4);
+    rotateAxisOnZ(xAxis, 4);
     break;
   case 'i':
     cam.rotateX(-10);
-    rotateAxisOnZ(sight, -10);
-    rotateAxisOnZ(xAxis, -10);
     break;
   case 'k':
     cam.rotateX(10);
