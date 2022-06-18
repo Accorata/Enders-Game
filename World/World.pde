@@ -8,7 +8,7 @@ Triangle one = new Triangle(c, c, c, color(0, 10));
 void setup () {
   Sphere s = new Sphere (new PVector(0, 0, 100), 100, color(200, 0, 0), 20, 20);
   s.addToCamera(cam);
-  size(800, 800);
+  size(1000, 1000);
   //cam.addTriangle(one);
 }
 PVector sight = new PVector(0, -300);
