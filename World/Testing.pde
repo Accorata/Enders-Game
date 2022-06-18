@@ -41,6 +41,10 @@ void showVisualization () {
   //println(sightInv);
   //realX.add(sightInv.copy().setMag(x.x));//.normalize());
   //realX.add(xAxisInv.copy().setMag(x.y));//.normalize());
+  line(width/2, height/2, width/2-y.mag(), height/2);
+  line(width/2-y.mag(), height/2, width/2-y.mag(), height/2+x.mag());
+  line(width/2, height/2, width/2, height/2+x.mag());
+  line(width/2, height/2+x.mag(), width/2-y.mag(), height/2+x.mag());
   line(width/2, height/2, width/2-real.x, height/2+real.y);
   ////fill(100);
   circle(width/2-real.x, height/2+real.y, 10);
