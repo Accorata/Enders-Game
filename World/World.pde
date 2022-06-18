@@ -13,6 +13,9 @@ void setup () {
 }
 PVector sight = new PVector(0, -300);
 PVector xAxis = new PVector(-150, 0);
+PVector xAxisInv;
+PVector sightInv;
+//PVector yAxis = new PVector(0, -150, 0);
 void draw () {
   background(255);
   showVisualization();

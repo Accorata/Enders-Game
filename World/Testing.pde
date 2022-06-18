@@ -1,6 +1,16 @@
 void showVisualization () {
-  fill(0);
+  recalcInverses();
   strokeWeight(1);
+  fill(0);
+  stroke(0, 155, 155);
+  line(width/2, height/2, width/2+sightInv.x, height/2+sightInv.y);
+  stroke(155, 0, 155);
+  line(width/2, height/2, width/2+xAxis.x, height/2+xAxis.y);
+  stroke(155, 155, 0);
+  line(width/2, height/2, width/2+xAxisInv.x, height/2+xAxisInv.y);
+  stroke(0);
+  line(width/2+100, height/2, width/2-100, height/2);
+  line(width/2, height/2+100, width/2, height/2-100);
   circle(width/2, height/2, 10);
   noFill();
   circle(width/2, height/2, 600);
@@ -14,8 +24,23 @@ void showVisualization () {
   line(width/2+sight.x-xAxis.x*100, height/2+sight.y-xAxis.y*100, width/2+sight.x+xAxis.x*100, height/2+sight.y+xAxis.y*100);
   line(width/2-sight.x*100, height/2-sight.y*100, width/2+sight.x*100, height/2+sight.y*100);
   line(width/2, height/2, width/2+object.x, height/2+object.y);
-  PVector x = project(object, sight);
+  stroke(255, 0, 0);
+  PVector x = project(object, sight);//new PVector(0, 0);//
+
+  //x.add(sightInv.copy().mult(object.x));//.normalize());
+  //x.add(xAxisInv.copy().mult(object.y));//.normalize());
   line(width/2+object.x, height/2+object.y, width/2+x.x, height/2+x.y);
+  PVector y = project(object, xAxis);
+  line(width/2+object.x, height/2+object.y, width/2+y.x, height/2+y.y);
+  stroke(0, 0, 255);
+  PVector real = new PVector(y.mag(), x.mag());
+  //println(sightInv);
+  //realX.add(sightInv.copy().setMag(x.x));//.normalize());
+  //realX.add(xAxisInv.copy().setMag(x.y));//.normalize());
+  line(width/2, height/2, width/2-real.x, height/2+real.y);
+  ////fill(100);
+  circle(width/2-real.x, height/2+real.y, 10);
+  //println(realX);
 }
 
 //private PVector projPoint(PVector point) {
