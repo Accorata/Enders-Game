@@ -18,7 +18,7 @@ void showVisualization () {
   line(width/2, height/2, width/2+sight.x, height/2+sight.y);
   line(width/2+sight.x, height/2+sight.y, width/2+sight.x+xAxis.x, height/2+sight.y+xAxis.y);
   strokeWeight(5);
-  PVector object = new PVector(780-width/2, 200-height/2);
+  PVector object = new PVector(100, -200);
   point(width/2+object.x, height/2+object.y);
   strokeWeight(0.5);
   line(width/2+sight.x-xAxis.x*100, height/2+sight.y-xAxis.y*100, width/2+sight.x+xAxis.x*100, height/2+sight.y+xAxis.y*100);
