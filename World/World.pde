@@ -13,17 +13,17 @@ void setup () {
 }
 void draw () {
   background(255);
-  PVector a = new PVector(0,200);
-  PVector b = new PVector(100,100);
-  PVector p = project(b, a);
-  circle(a.x, a.y,10);
-  //circle(b.x, b.y,10);
-  circle(p.x, p.y,10);
-  //cam.display();
-  //fill(0);
-  //cam.proj(a);
-  //cam.proj(b);
-  //cam.proj(c);
+  //PVector a = new PVector(0,200);
+  //PVector b = new PVector(100,100);
+  //PVector p = project(b, a);
+  //circle(a.x, a.y,10);
+  ////circle(b.x, b.y,10);
+  //circle(p.x, p.y,10);
+  cam.display();
+  fill(0);
+  cam.proj(a);
+  cam.proj(b);
+  cam.proj(c);
 }
 
 void keyPressed() {

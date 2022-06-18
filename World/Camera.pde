@@ -72,9 +72,12 @@ public class Camera {
     //  fin.add(viewY.copy().mult(fromScreen * rotatedY));
     //} 
     //else {      
-    fin.add(viewX.copy().mult(fromScreen * rotatedX / (rotatedZ + fromScreen)+width/2));
-    fin.add(viewY.copy().mult(fromScreen * rotatedY / (rotatedZ + fromScreen)+height/2));
-    //}
+    if (point.z >= -1 * fromScreen) {
+      //fin.add(viewX.copy().mult(fromScreen * rotatedX / (rotatedZ + fromScreen)+width/2));
+      //fin.add(viewY.copy().mult(fromScreen * rotatedY / (rotatedZ + fromScreen)+height/2));
+      fin.x = fromScreen * rotatedX / (rotatedZ + fromScreen)+width/2;
+      fin.y = fromScreen * rotatedY / (rotatedZ + fromScreen)+width/2;
+    }
     return fin;
   }
   public void proj (PVector test) {
