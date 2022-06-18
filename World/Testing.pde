@@ -25,7 +25,7 @@ void showVisualization () {
   line(width/2-sight.x*100, height/2-sight.y*100, width/2+sight.x*100, height/2+sight.y*100);
   line(width/2, height/2, width/2+object.x, height/2+object.y);
   stroke(255, 0, 0);
-  PVector x = project(object, sight);//new PVector(0, 0);//
+  PVector x = project(object, xAxis);//new PVector(0, 0);//
   println(x);
   println(x.x + x.y);
   println(x.mag());
@@ -37,22 +37,28 @@ void showVisualization () {
   stroke(0);
   line(width/2-y.x*100, height/2-y.y*100, width/2+y.x*100, height/2+y.y*100);
   stroke(0, 0, 255);
-  PVector real = new PVector(y.mag(), x.mag());
+  float xVal = object.dot(xAxis.copy().normalize());
+  float yVal = object.dot(sight.copy().normalize())-300;//x.dot(xAxisInv.copy().normalize());//new PVector(y.mag(), x.mag());
   //println(sightInv);
   //realX.add(sightInv.copy().setMag(x.x));//.normalize());
   //realX.add(xAxisInv.copy().setMag(x.y));//.normalize());
-  line(width/2, height/2, width/2-y.mag(), height/2);
-  line(width/2-y.mag(), height/2, width/2-y.mag(), height/2+x.mag());
-  line(width/2, height/2, width/2, height/2+x.mag());
-  line(width/2, height/2+x.mag(), width/2-y.mag(), height/2+x.mag());
-  line(width/2, height/2, width/2-real.x, height/2+real.y);
+  //line(width/2, height/2, width/2-y.mag(), height/2);
+  //line(width/2-y.mag(), height/2, width/2-y.mag(), height/2+x.mag());
+  //line(width/2, height/2, width/2, height/2+x.mag());
+  //line(width/2, height/2+x.mag(), width/2-y.mag(), height/2+x.mag());
+  //line(width/2, height/2, width/2-real.x, height/2+real.y);
+  line(width/2, height/2, width/2-xVal, height/2);
+  line(width/2, height/2, width/2, height/2-yVal);
+  line(width/2, height/2-yVal, width/2-xVal, height/2-yVal);
+  line(width/2-xVal, height/2, width/2-xVal, height/2-yVal);
+  line(width/2, height/2, width/2-xVal, height/2-yVal);
   fill(0);
   stroke(0);
-  circle(width/2-real.x, height/2+real.y, 10);
-  PVector fin = new PVector(0,0);
-  fin.x = sight.mag() * real.y / (sight.mag()) +width/2;// + sight.mag())
-  fin.x = y.x + width/2;
-  circle(fin.x, fin.y, 25);
+  circle(width/2-xVal, height/2-yVal, 10);
+  //PVector fin = new PVector(0,0);
+  //fin.x = sight.mag() * real.y / (sight.mag()) +width/2;// + sight.mag())
+  //fin.x = y.x + width/2;
+  //circle(fin.x, fin.y, 25);
   //fin.y = fromScreen * loc.y / (loc.z + fromScreen)+width/2;
   //println(realX);
 }
