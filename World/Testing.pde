@@ -4,8 +4,8 @@ void showVisualization () {
   fill(0);
   stroke(0, 155, 155);
   line(width/2, height/2, width/2+sightInv.x, height/2+sightInv.y);
-  stroke(155, 0, 155);
-  line(width/2, height/2, width/2+xAxis.x, height/2+xAxis.y);
+  //stroke(155, 0, 155);
+  //line(width/2, height/2, width/2+xAxis.x, height/2+xAxis.y);
   stroke(155, 155, 0);
   line(width/2, height/2, width/2+xAxisInv.x, height/2+xAxisInv.y);
   stroke(0);
@@ -26,12 +26,16 @@ void showVisualization () {
   line(width/2, height/2, width/2+object.x, height/2+object.y);
   stroke(255, 0, 0);
   PVector x = project(object, sight);//new PVector(0, 0);//
-
+  println(x);
+  println(x.x + x.y);
+  println(x.mag());
   //x.add(sightInv.copy().mult(object.x));//.normalize());
   //x.add(xAxisInv.copy().mult(object.y));//.normalize());
   line(width/2+object.x, height/2+object.y, width/2+x.x, height/2+x.y);
   PVector y = project(object, xAxis);
   line(width/2+object.x, height/2+object.y, width/2+y.x, height/2+y.y);
+  stroke(0);
+  line(width/2-y.x*100, height/2-y.y*100, width/2+y.x*100, height/2+y.y*100);
   stroke(0, 0, 255);
   PVector real = new PVector(y.mag(), x.mag());
   //println(sightInv);

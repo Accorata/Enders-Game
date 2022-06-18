@@ -68,11 +68,11 @@ public class Camera {
     float rotatedX = magProject(point, viewX);
     float rotatedY = magProject(point, viewY);
     float rotatedZ = magProject(point, sight);
-    PVector loc = new PVector(0, 0, 0);
+    //PVector loc = new PVector(0, 0, 0);
+    ////loc.add(project(point, viewX));
+    ////loc.add(project(point, viewY));
     //loc.add(project(point, viewX));
-    //loc.add(project(point, viewY));
-    loc.add(project(point, viewX));
-    println(loc);
+    //println(loc);
     //if (point.z <= -1 * fromScreen) {
     //  fin.add(viewX.copy().mult(fromScreen * rotatedX));
     //  fin.add(viewY.copy().mult(fromScreen * rotatedY));
@@ -81,8 +81,8 @@ public class Camera {
     if (point.z >= -1 * fromScreen) {
       //fin.add(viewX.copy().mult(fromScreen * rotatedX / (rotatedZ + fromScreen)+width/2));
       //fin.add(viewY.copy().mult(fromScreen * rotatedY / (rotatedZ + fromScreen)+height/2));
-      fin.x = fromScreen * loc.x / (loc.z + fromScreen)+width/2;
-      fin.y = fromScreen * loc.y / (loc.z + fromScreen)+width/2;
+      fin.x = fromScreen * rotatedX / (rotatedZ + fromScreen)+width/2;
+      fin.y = fromScreen * rotatedY / (rotatedZ + fromScreen)+width/2;
     }
     return fin;
   }
