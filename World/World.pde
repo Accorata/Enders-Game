@@ -1,29 +1,37 @@
 import java.util.Collections;
 Camera cam = new Camera();
-PVector a = new PVector (100, 100, 0);
-PVector b = new PVector (-100, 0, 0);
-PVector c = new PVector (100, 0, 0);
-Triangle one = new Triangle(a, b, c, color(0, 10));
+PVector a = new PVector (100, 100, 100);
+PVector b = new PVector (-100, 0, 100);
+PVector c = new PVector (100, 0, 100);
+Triangle one = new Triangle(c, c, c, color(0, 10));
 
 void setup () {
-  Sphere s = new Sphere (new PVector(0, 0, 0), 100, color(200, 0, 0), 20, 20);
-  s.addToCamera(cam);
-  size(400, 400);
-  cam.addTriangle(one);
+  Sphere s = new Sphere (new PVector(0, 0, 100), 100, color(200, 0, 0), 20, 20);
+  //s.addToCamera(cam);
+  size(800, 800);
+  //cam.addTriangle(one);
 }
+PVector sight = new PVector(0, 300);
+PVector xAxis = new PVector(150, 0);
 void draw () {
   background(255);
+  fill(0);
+  circle(width/2, height/2, 10);
+  noFill();
+  circle(width/2, height/2, 600);
+  line(width/2, height/2, width/2+sight.x, height/2+sight.y);
+  line(width/2+sight.x, height/2+sight.y, width/2+sight.x+xAxis.x, height/2+sight.y+xAxis.y);
   //PVector a = new PVector(0,200);
   //PVector b = new PVector(100,100);
   //PVector p = project(b, a);
   //circle(a.x, a.y,10);
   ////circle(b.x, b.y,10);
   //circle(p.x, p.y,10);
-  cam.display();
-  fill(0);
-  cam.proj(a);
-  cam.proj(b);
-  cam.proj(c);
+  //cam.display();
+  //fill(0);
+  //cam.proj(a);
+  //cam.proj(b);
+  //cam.proj(c);
 }
 
 void keyPressed() {
@@ -36,6 +44,8 @@ void keyPressed() {
     break;
   case 'i':
     cam.rotateX(-10);
+    rotateAxisOnZ(sight, -10);
+    rotateAxisOnZ(xAxis, -10);
     break;
   case 'k':
     cam.rotateX(10);

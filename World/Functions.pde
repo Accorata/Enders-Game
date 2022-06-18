@@ -29,3 +29,13 @@ void rotateAxisOnY(PVector axis, float deg) {
     axis.z = temp.y;
   }
 }
+
+void rotateAxisOnZ(PVector axis, float deg) {
+  if (deg != 0) {
+    float rad = radians(deg);
+    PVector temp = new PVector(axis.x, axis.y);
+    temp.rotate(rad);
+    axis.x = temp.x;
+    axis.y = temp.y;
+  }
+}
