@@ -53,9 +53,12 @@ void showVisualization () {
   stroke(0);
   circle(width/2-xVal, height/2-yVal, 10);
   PVector fin = new PVector(0, 0);
-  float slope = -xVal/yVal;
-  println(slope);
-  fin.x = (sight.mag() * slope)+width/2;
+  fin.x = -100;
+  if (yVal > 0) {
+    float slope = -xVal/yVal;
+    println(slope);
+    fin.x = (sight.mag() * slope)+width/2;
+  }
   fin.y = height/2-300;
   line(width/2, height/2, fin.x, fin.y);
   circle(fin.x, fin.y, 25);
