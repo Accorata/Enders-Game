@@ -6,7 +6,7 @@ PVector c = new PVector (100, 0, 100);
 Triangle one = new Triangle(c, c, c, color(0, 10));
 
 void setup () {
-  Sphere s = new Sphere (new PVector(0, 0, 100), 100, color(200, 0, 0), 20, 20);
+  Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 20, 20);
   s.addToCamera(cam);
   size(800, 800);
   //cam.addTriangle(one);

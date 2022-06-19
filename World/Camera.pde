@@ -78,11 +78,9 @@ public class Camera {
     //  fin.add(viewY.copy().mult(fromScreen * rotatedY));
     //} 
     //else {      
-    if (point.z >= -1 * fromScreen) {
-      //fin.add(viewX.copy().mult(fromScreen * rotatedX / (rotatedZ + fromScreen)+width/2));
-      //fin.add(viewY.copy().mult(fromScreen * rotatedY / (rotatedZ + fromScreen)+height/2));
-      fin.x = width/2-(fromScreen * rotatedX / (rotatedZ + fromScreen));
-      fin.y = fromScreen * rotatedY / (rotatedZ + fromScreen)+height/2;
+    if (rotatedZ > 0) {
+      fin.x = (sight.mag() * -rotatedX/rotatedZ)+width/2;
+      fin.y = (sight.mag() * -rotatedY/rotatedZ)+height/2;
     }
     return fin;
   }
