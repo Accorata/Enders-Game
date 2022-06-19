@@ -6,9 +6,11 @@ PVector c = new PVector (100, 0, 100);
 Triangle one = new Triangle(c, c, c, color(0, 10));
 
 void setup () {
-  Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 20, 20);
-  Sphere s2 = new Sphere (new PVector(300, 0, 400), 100, color(200, 0, 0), 20, 20);
-  s.addToCamera(cam);
+  //Sphere outside = new Sphere (new PVector(0, 0, 0), 10000, color(255), 20, 20);
+  //Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 20, 20);
+  Sphere s2 = new Sphere (new PVector(-200, 0, 400), 100, color(200, 0, 0), 20, 20);
+  //outside.addToCamera(cam);
+  //s.addToCamera(cam);
   s2.addToCamera(cam);
   size(800, 800);
   //cam.addTriangle(one);
@@ -19,9 +21,12 @@ PVector xAxisInv;
 PVector sightInv;
 //PVector yAxis = new PVector(0, -150, 0);
 void draw () {
+  cam.num = 0;
   background(255);
-  //showVisualization();
   cam.display();
+  showVisualization();
+  //println(cam.num);
+  //println(frameRate);
 }
 
 void keyPressed() {

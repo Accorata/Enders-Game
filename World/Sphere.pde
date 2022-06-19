@@ -49,6 +49,7 @@ public class Sphere {
     for (int i = 1; i<rows; i++) {
       triangles.add(new Triangle(points.get(end), points.get(end-i), points.get(end-i-1), clr));
     }
+    //println(points.size());
     return triangles;
   }
 }

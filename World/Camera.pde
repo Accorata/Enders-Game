@@ -7,6 +7,8 @@ public class Camera {
   private PVector viewX = new PVector(1, 0, 0);
   private PVector viewY = new PVector(0, 1, 0);
 
+  int num = 0;
+
   public Camera() {
     this.loc = new PVector(0, 0, -fromScreen);
   }
@@ -55,12 +57,10 @@ public class Camera {
   }
   private void proj (Triangle t) {
     ArrayList<PVector> points = new ArrayList<PVector>();
-    PVector perspective = pos.copy();//.add(sight);
     for (PVector point : t.getPoints()) {
       points.add(projPoint(point));
     }
     fill(t.clr);
-    //circle(points.get(0).x, points.get(0).y, 10);
     triangle(points.get(0).x, points.get(0).y, points.get(1).x, points.get(1).y, points.get(2).x, points.get(2).y);
   }
   private PVector projPoint(PVector point) {
@@ -78,10 +78,19 @@ public class Camera {
     //  fin.add(viewY.copy().mult(fromScreen * rotatedY));
     //} 
     //else {      
+    if (num - 958 == 1) {
+      println(rotatedZ);
+    }
+    num++;
     if (rotatedZ > 0) {
       fin.x = (sight.mag() * -rotatedX/rotatedZ)+width/2;
       fin.y = (sight.mag() * -rotatedY/rotatedZ)+height/2;
+    } else {
+      fin.x = ((sight.mag() * rotatedX) + width/2);
+      fin.y = ((sight.mag() * rotatedY) + height/2);
     }
+    //scX = (((fromScreen * point.x) / ((-1 * fromScreen + 1) + fromScreen)) + width/2);
+    //scY = (((fromScreen * point.y) / ((-1 * fromScreen + 1) + fromScreen)) + height/2)
     return fin;
   }
   public void proj (PVector test) {
