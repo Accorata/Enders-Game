@@ -65,9 +65,9 @@ public class Camera {
   }
   private PVector projPoint(PVector point) {
     PVector fin = new PVector (0, 0);
-    float rotatedX = point.dot(viewX);//+width/2;
-    float rotatedY = point.dot(viewY);//+height/2;
-    float rotatedZ = point.dot(sight);
+    float rotatedX = point.dot(viewX.copy().normalize());//+width/2;
+    float rotatedY = point.dot(viewY.copy().normalize());//+height/2;
+    float rotatedZ = point.dot(sight.copy().normalize());
     //PVector loc = new PVector(0, 0, 0);
     ////loc.add(project(point, viewX));
     ////loc.add(project(point, viewY));
@@ -81,7 +81,7 @@ public class Camera {
     if (point.z >= -1 * fromScreen) {
       //fin.add(viewX.copy().mult(fromScreen * rotatedX / (rotatedZ + fromScreen)+width/2));
       //fin.add(viewY.copy().mult(fromScreen * rotatedY / (rotatedZ + fromScreen)+height/2));
-      fin.x = fromScreen * rotatedX / (rotatedZ + fromScreen)+width/2;
+      fin.x = width/2-(fromScreen * rotatedX / (rotatedZ + fromScreen));
       fin.y = fromScreen * rotatedY / (rotatedZ + fromScreen)+height/2;
     }
     return fin;

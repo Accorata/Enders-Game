@@ -26,9 +26,6 @@ void showVisualization () {
   line(width/2, height/2, width/2+object.x, height/2+object.y);
   stroke(255, 0, 0);
   PVector x = project(object, xAxis);//new PVector(0, 0);//
-  println(x);
-  println(x.x + x.y);
-  println(x.mag());
   //x.add(sightInv.copy().mult(object.x));//.normalize());
   //x.add(xAxisInv.copy().mult(object.y));//.normalize());
   line(width/2+object.x, height/2+object.y, width/2+x.x, height/2+x.y);
@@ -38,7 +35,7 @@ void showVisualization () {
   line(width/2-y.x*100, height/2-y.y*100, width/2+y.x*100, height/2+y.y*100);
   stroke(0, 0, 255);
   float xVal = object.dot(xAxis.copy().normalize());
-  float yVal = object.dot(sight.copy().normalize())-300;//x.dot(xAxisInv.copy().normalize());//new PVector(y.mag(), x.mag());
+  float yVal = object.dot(sight.copy().normalize());//x.dot(xAxisInv.copy().normalize());//new PVector(y.mag(), x.mag());
   //println(sightInv);
   //realX.add(sightInv.copy().setMag(x.x));//.normalize());
   //realX.add(xAxisInv.copy().setMag(x.y));//.normalize());
@@ -55,12 +52,15 @@ void showVisualization () {
   fill(0);
   stroke(0);
   circle(width/2-xVal, height/2-yVal, 10);
-  //PVector fin = new PVector(0,0);
-  //fin.x = sight.mag() * real.y / (sight.mag()) +width/2;// + sight.mag())
-  //fin.x = y.x + width/2;
-  //circle(fin.x, fin.y, 25);
+  PVector fin = new PVector(0, 0);
+  float slope = -xVal/yVal;
+  println(slope);
+  fin.x = (sight.mag() * slope)+width/2;
+  fin.y = height/2-300;
+  line(width/2, height/2, fin.x, fin.y);
+  circle(fin.x, fin.y, 25);
   //fin.y = fromScreen * loc.y / (loc.z + fromScreen)+width/2;
-  //println(realX);
+  println(fin.x);
 }
 
 //private PVector projPoint(PVector point) {
