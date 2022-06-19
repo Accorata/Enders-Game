@@ -111,4 +111,9 @@ public class Camera {
     rotateAxisOnY(viewY, deg);
     rotateAxisOnY(sight, deg);
   }
+  public void rotateZ (float deg) {
+    rotateAxisOnZ(viewX, deg);
+    rotateAxisOnZ(viewY, deg);
+    rotateAxisOnZ(sight, deg);
+  }
 }

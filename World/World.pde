@@ -7,7 +7,9 @@ Triangle one = new Triangle(c, c, c, color(0, 10));
 
 void setup () {
   Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 20, 20);
+  Sphere s2 = new Sphere (new PVector(300, 0, 400), 100, color(200, 0, 0), 20, 20);
   s.addToCamera(cam);
+  s2.addToCamera(cam);
   size(800, 800);
   //cam.addTriangle(one);
 }
@@ -40,5 +42,11 @@ void keyPressed() {
   case 'k':
     cam.rotateX(-10);
     break;
+  //case 'u':
+  //  cam.rotateZ(-10);
+  //  break;
+  //case 'o':
+  //  cam.rotateZ(10);
+  //  break;
   }
 }
