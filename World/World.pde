@@ -18,37 +18,27 @@ PVector sightInv;
 //PVector yAxis = new PVector(0, -150, 0);
 void draw () {
   background(255);
-  showVisualization();
-  //PVector a = new PVector(0,200);
-  //PVector b = new PVector(100,100);
-  //PVector p = project(b, a);
-  //circle(a.x, a.y,10);
-  ////circle(b.x, b.y,10);
-  //circle(p.x, p.y,10);
+  //showVisualization();
   cam.display();
-  //fill(0);
-  //cam.proj(a);
-  //cam.proj(b);
-  //cam.proj(c);
 }
 
 void keyPressed() {
   switch(key) {
   case 'j':
-    cam.rotateY(10);
+    cam.rotateY(-10);
     rotateAxisOnZ(sight, -5);
     rotateAxisOnZ(xAxis, -5);
     break;
   case 'l':
-    cam.rotateY(-10);
+    cam.rotateY(10);
     rotateAxisOnZ(sight, 5);
     rotateAxisOnZ(xAxis, 5);
     break;
   case 'i':
-    cam.rotateX(-10);
+    cam.rotateX(10);
     break;
   case 'k':
-    cam.rotateX(10);
+    cam.rotateX(-10);
     break;
   }
 }

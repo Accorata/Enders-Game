@@ -40,8 +40,8 @@ public class Sphere {
       triangles.add(new Triangle(points.get(rows*i), points.get(1+rows*(i-1)), points.get(rows*i+rows), clr));
       triangles.add(new Triangle(points.get(rows*i+1), points.get(1+rows*(i-1)), points.get(rows*i+rows), clr));
       for (int j = 1; j<rows; j++) {
-        //triangles.add(new Triangle(points.get(j+rows*(i-1)), points.get(j+1+rows*(i-1)), points.get(j+rows*i), clr));
-        //triangles.add(new Triangle(points.get(j+1+rows*(i-1)), points.get(j+1+rows*i), points.get(j+rows*i), clr));
+        triangles.add(new Triangle(points.get(j+rows*(i-1)), points.get(j+1+rows*(i-1)), points.get(j+rows*i), clr));
+        triangles.add(new Triangle(points.get(j+1+rows*(i-1)), points.get(j+1+rows*i), points.get(j+rows*i), clr));
       }
     }
     int end = points.size()-1;
