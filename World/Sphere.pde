@@ -13,6 +13,9 @@ public class Sphere {
   public boolean isWithin (PVector loc) {
     return dist(loc, center) <= radius;
   }
+  public PVector getNormal (PVector loc) {
+    return center.copy().sub(loc);
+  }
   public void addToCamera (Camera c) {
     for (Triangle t : triangles) {
       c.addTriangle(t);
