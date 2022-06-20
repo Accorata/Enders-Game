@@ -24,7 +24,7 @@ public class Camera {
       //noStroke();
       projTri(t);
     }
-    PVector one = projPoint(thing);
+    PVector one = projPoint(thing.getPos());
     //PVector two = projPoint(pos.copy().add(viewZ).sub(viewY).sub(viewX));
     if (one != null) {
       line(one.x, one.y, width-100, height-100);

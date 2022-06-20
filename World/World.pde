@@ -29,7 +29,7 @@ PVector xAxis = new PVector(-150, 0);
 PVector xAxisInv;
 PVector sightInv;
 //PVector yAxis = new PVector(0, -150, 0);
-PVector thing = new PVector(100, 100, 100);
+Tether thing = new Tether(new PVector(100, 100, 100));
 void draw () {
   background(255);
   cam.display();
