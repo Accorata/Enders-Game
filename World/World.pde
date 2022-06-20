@@ -6,7 +6,8 @@ PVector b = new PVector (-100, 0, 100);
 PVector c = new PVector (100, 0, 100);
 Triangle one = new Triangle(c, c, c, color(0, 10));
 PVector dir = new PVector(0, 0, 0);
-final float speed = 0.01;
+float speed = 0.01;
+final boolean test = true;
 
 
 void setup () {
@@ -18,18 +19,27 @@ void setup () {
   addToWorld(s2);
   size(800, 800);
   //cam.addTriangle(one);
+  if (test) {
+    speed *=1000;
+  }
 }
 PVector sight = new PVector(0, -300);
 PVector xAxis = new PVector(-150, 0);
 PVector xAxisInv;
 PVector sightInv;
 //PVector yAxis = new PVector(0, -150, 0);
+PVector thing = new PVector(100,100,100);
 void draw () {
   background(255);
   cam.display();
   showVisualization();
-  cam.boost(dir);
-  cam.move();
+  if (!test) {
+    cam.boost(dir);
+    cam.move();
+  } else {
+    cam.move(dir);
+  }
+  
   //println(cam.num);
   //println(frameRate);
 }

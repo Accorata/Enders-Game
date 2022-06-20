@@ -21,9 +21,16 @@ public class Camera {
     }
     Collections.sort(Triangles);
     for (Triangle t : Triangles) {
+      //noStroke();
       projTri(t);
     }
+    PVector one = projPoint(thing);
+    //PVector two = projPoint(pos.copy().add(viewZ).sub(viewY).sub(viewX));
+    if (one != null) {
+      line(one.x, one.y, width-100, height-100);
+    }
   }
+
   private boolean projTri (Triangle t) {
     ArrayList<PVector> points = new ArrayList<PVector>();
     for (PVector point : t.getPoints()) {
