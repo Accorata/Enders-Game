@@ -20,9 +20,9 @@ public class Triangle implements Comparable<Triangle> {
     cent.div(3);
     return cent;
   }
-  public void update_close() {
+  public void updateClose() {
     this.center = calcCenter();
-    this.close = dist(center, new PVector(0, 0, -300));
+    this.close = dist(center, cam.pos);
   }
   public PVector[] getPoints() {
     return points;

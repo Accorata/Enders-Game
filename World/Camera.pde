@@ -14,7 +14,7 @@ public class Camera {
 
   public void display() {
     for (Triangle t : Triangles) {
-      t.update_close();
+      t.updateClose();
     }
     Collections.sort(Triangles);
     for (Triangle t : Triangles) {
