@@ -117,9 +117,9 @@ public class Camera {
         PVector normal = s.getNormal(pos).normalize();
         vel.div(2);
         vel.add(project(vel, normal).setMag(vel.dot(normal)*2));
-        //println(s.getNormal(pos));
       }
     }
+    dir.add(thing.force(pos));
   }
   public boolean attemptGrab () {
     boolean grabbed = false;
