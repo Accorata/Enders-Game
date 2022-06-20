@@ -1,16 +1,8 @@
-float dist(PVector a, PVector b) {
+public float dist(PVector a, PVector b) {
   return a.copy().sub(b).mag();
 }
 
-float magProject(PVector u, PVector v) {
-  return u.dot(v)/v.mag();
-}
-
-PVector project(PVector u, PVector v) {
-  return v.copy().mult(u.dot(v)/sq(v.mag()));
-}
-
-void rotateAxisOnX(PVector axis, float deg) {
+public void rotateAxisOnX(PVector axis, float deg) {
   if (deg != 0) {
     float rad = radians(deg);
     PVector temp = new PVector(axis.z, axis.y);
@@ -20,7 +12,7 @@ void rotateAxisOnX(PVector axis, float deg) {
   }
 }
 
-void rotateAxisOnY(PVector axis, float deg) {
+public void rotateAxisOnY(PVector axis, float deg) {
   if (deg != 0) {
     float rad = radians(deg);
     PVector temp = new PVector(axis.x, axis.z);
@@ -30,7 +22,7 @@ void rotateAxisOnY(PVector axis, float deg) {
   }
 }
 
-void rotateAxisOnZ(PVector axis, float deg) {
+public void rotateAxisOnZ(PVector axis, float deg) {
   if (deg != 0) {
     float rad = radians(deg);
     PVector temp = new PVector(axis.x, axis.y);
@@ -40,6 +32,9 @@ void rotateAxisOnZ(PVector axis, float deg) {
   }
 }
 
+PVector project(PVector u, PVector v) {
+  return v.copy().mult(u.dot(v)/sq(v.mag()));
+}
 void recalcInverses() {
   PVector[] inv = inverse(xAxis, sight);
   xAxisInv = inv[0];

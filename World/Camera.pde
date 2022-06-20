@@ -1,14 +1,15 @@
 public class Camera {
   private ArrayList<Triangle> Triangles = new ArrayList<Triangle>();
   private PVector pos;
-  private PVector sight = new PVector(0, 0, 300);
+  final float sight = 300;
+  private PVector viewZ = new PVector(0, 0, 1);
   private PVector viewX = new PVector(1, 0, 0);
   private PVector viewY = new PVector(0, 1, 0);
 
   public Camera() {
     this.pos = new PVector(0, 0, 0);
   }
-  
+
   public void display() {
     for (Triangle t : Triangles) {
       t.update_close();
@@ -32,17 +33,18 @@ public class Camera {
     return true;
   }
   private PVector projPoint(PVector point) {
-    PVector fin = new PVector (0, 0);
-    float rotatedX = point.dot(viewX.copy().normalize());//+width/2;
-    float rotatedY = point.dot(viewY.copy().normalize());//+height/2;
-    float rotatedZ = point.dot(sight.copy().normalize());
+    PVector movedPoint = point.copy().sub(pos);
+    float rotatedX = movedPoint.dot(viewX.copy().normalize());
+    float rotatedY = movedPoint.dot(viewY.copy().normalize());
+    float rotatedZ = movedPoint.dot(viewZ.copy().normalize());
+    PVector ans = new PVector (0, 0);
     if (rotatedZ > 0) {
-      fin.x = (sight.mag() * -rotatedX/rotatedZ)+width/2;
-      fin.y = (sight.mag() * -rotatedY/rotatedZ)+height/2;
+      ans.x = (sight * -rotatedX/rotatedZ)+width/2;
+      ans.y = (sight * -rotatedY/rotatedZ)+height/2;
     } else {
       return null;
     }
-    return fin;
+    return ans;
   }
   public void addTriangle (Triangle a) {
     Triangles.add(a);
@@ -50,16 +52,23 @@ public class Camera {
   public void rotateX (float deg) {
     rotateAxisOnX(viewX, deg);
     rotateAxisOnX(viewY, deg);
-    rotateAxisOnX(sight, deg);
+    rotateAxisOnX(viewZ, deg);
   }
   public void rotateY (float deg) {
     rotateAxisOnY(viewX, deg);
     rotateAxisOnY(viewY, deg);
-    rotateAxisOnY(sight, deg);
+    rotateAxisOnY(viewZ, deg);
   }
   public void rotateZ (float deg) {
     rotateAxisOnZ(viewX, deg);
     rotateAxisOnZ(viewY, deg);
-    rotateAxisOnZ(sight, deg);
+    rotateAxisOnZ(viewZ, deg);
+  }
+  public void boost (PVector dir) {
+    PVector translated = new PVector(0,0,0);
+    translated.add(viewX.copy().mult(dir.x));
+  }
+  public void move (PVector dir) {
+    pos.add(dir);
   }
 }
