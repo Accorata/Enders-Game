@@ -74,9 +74,10 @@ public class Camera {
     vel.add(translated);
   }
   public void move () {
-    pos.add(vel);
+    move(vel);
   }
   public void move (PVector dir) {
     pos.add(dir);
+    
   }
 }

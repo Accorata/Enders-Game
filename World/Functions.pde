@@ -32,6 +32,11 @@ public void rotateAxisOnZ(PVector axis, float deg) {
   }
 }
 
+public void addToWorld (Sphere obj) {
+  obj.addToCamera(cam);
+  world.add(obj);
+}
+
 PVector project(PVector u, PVector v) {
   return v.copy().mult(u.dot(v)/sq(v.mag()));
 }

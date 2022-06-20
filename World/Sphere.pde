@@ -1,13 +1,18 @@
 public class Sphere {
   private ArrayList<Triangle> triangles;
   private PVector center;
+  private float radius;
   
   public Sphere(PVector pos, float radius, color clr, int angle, int rows) {
     this.center = pos;
+    this.radius = radius;
     ArrayList<PVector> ps = calcPoints(pos, radius, radius, angle, rows);
     this.triangles = calcTriangles(ps, angle, rows, clr);
   }
   
+  public boolean isWithin (PVector loc) {
+    return dist(loc, center) <= radius;
+  }
   public void addToCamera (Camera c) {
     for (Triangle t : triangles) {
       c.addTriangle(t);
@@ -49,7 +54,6 @@ public class Sphere {
     for (int i = 1; i<rows; i++) {
       triangles.add(new Triangle(points.get(end), points.get(end-i), points.get(end-i-1), clr));
     }
-    //println(points.size());
     return triangles;
   }
 }
