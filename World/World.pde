@@ -5,7 +5,7 @@ PVector b = new PVector (-100, 0, 100);
 PVector c = new PVector (100, 0, 100);
 Triangle one = new Triangle(c, c, c, color(0, 10));
 PVector dir = new PVector(0, 0, 0);
-final float speed = 5;
+final float speed = 0.01;
 
 void setup () {
   //Sphere outside = new Sphere (new PVector(0, 0, 0), 10000, color(255), 20, 20);
@@ -26,7 +26,8 @@ void draw () {
   background(255);
   cam.display();
   showVisualization();
-  cam.move(dir);
+  cam.boost(dir);
+  cam.move();
   //println(cam.num);
   //println(frameRate);
 }

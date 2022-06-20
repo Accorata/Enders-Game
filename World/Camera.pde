@@ -1,6 +1,7 @@
 public class Camera {
   private ArrayList<Triangle> Triangles = new ArrayList<Triangle>();
   private PVector pos;
+  private PVector vel;
   final float sight = 300;
   private PVector viewZ = new PVector(0, 0, 1);
   private PVector viewX = new PVector(1, 0, 0);
@@ -8,6 +9,7 @@ public class Camera {
 
   public Camera() {
     this.pos = new PVector(0, 0, 0);
+    this.vel = new PVector(0, 0, 0);
   }
 
   public void display() {
@@ -67,6 +69,12 @@ public class Camera {
   public void boost (PVector dir) {
     PVector translated = new PVector(0,0,0);
     translated.add(viewX.copy().mult(dir.x));
+    translated.add(viewY.copy().mult(dir.y));
+    translated.add(viewZ.copy().mult(dir.z));
+    vel.add(translated);
+  }
+  public void move () {
+    pos.add(vel);
   }
   public void move (PVector dir) {
     pos.add(dir);
