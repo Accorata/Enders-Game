@@ -2,16 +2,16 @@ public class Sphere {
   private ArrayList<Triangle> triangles;
   private PVector center;
   private float radius;
-  
+
   public Sphere(PVector pos, float radius, color clr, int angle, int rows) {
     this.center = pos;
     this.radius = radius;
     ArrayList<PVector> ps = calcPoints(pos, radius, radius, angle, rows);
     this.triangles = calcTriangles(ps, angle, rows, clr);
   }
-  
-  public boolean isWithin (PVector loc) {
-    return dist(loc, center) <= radius;
+
+  public boolean isWithin (PVector loc, float flex) {
+    return dist(loc, center) <= radius+flex;
   }
   public PVector getNormal (PVector loc) {
     return loc.copy().sub(center);

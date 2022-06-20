@@ -100,12 +100,19 @@ public class Camera {
     vel.add(translated);
   }
   public void move () {
+    if (grab) {
+      if (vel.mag() < 0.2) {
+        vel = new PVector(0, 0, 0);
+      } else {
+        vel.div(1.1);
+      }
+    }
     move(vel);
   }
   public void move (PVector dir) {
     pos.add(dir);
     for (Sphere s : world) {
-      if (s.isWithin(pos)) {
+      if (s.isWithin(pos, 0)) {
         pos = s.displace(pos);
         PVector normal = s.getNormal(pos).normalize();
         vel.div(2);
@@ -113,5 +120,15 @@ public class Camera {
         //println(s.getNormal(pos));
       }
     }
+  }
+  public boolean attemptGrab () {
+    boolean grabbed = false;
+    for (Sphere s : world) {
+      if (s.isWithin(pos, 20)) {
+        grabbed = true;
+        break;
+      }
+    }
+    return grabbed;
   }
 }

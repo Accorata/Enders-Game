@@ -7,7 +7,8 @@ PVector c = new PVector (100, 0, 100);
 Triangle one = new Triangle(c, c, c, color(0, 10));
 PVector dir = new PVector(0, 0, 0);
 float speed = 0.01;
-final boolean test = true;
+final boolean test = false;
+public boolean grab = false;
 
 
 void setup () {
@@ -28,18 +29,18 @@ PVector xAxis = new PVector(-150, 0);
 PVector xAxisInv;
 PVector sightInv;
 //PVector yAxis = new PVector(0, -150, 0);
-PVector thing = new PVector(100,100,100);
+PVector thing = new PVector(100, 100, 100);
 void draw () {
   background(255);
   cam.display();
-  showVisualization();
+  //showVisualization();
   if (!test) {
     cam.boost(dir);
     cam.move();
   } else {
     cam.move(dir);
   }
-  
+
   //println(cam.num);
   //println(frameRate);
 }
@@ -80,6 +81,9 @@ void keyPressed() {
     //case 'o':
     //  cam.rotateZ(10);
     //  break;
+  case 'g':
+    grab = cam.attemptGrab();
+    break;
   }
 }
 void keyReleased () {
@@ -95,6 +99,9 @@ void keyReleased () {
     break;
   case 'd':
     dir.x = 0;
+    break;
+  case 'g':
+    grab = false;
     break;
   }
 }
