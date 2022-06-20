@@ -3,9 +3,12 @@ public class Camera {
   private PVector pos;
   private PVector vel;
   final float sight = 300;
-  private PVector viewZ = new PVector(0, 0, 1);
   private PVector viewX = new PVector(1, 0, 0);
   private PVector viewY = new PVector(0, 1, 0);
+  private PVector viewZ = new PVector(0, 0, 1);
+  private float xRotate = 0;
+  private float yRotate = 0;
+  private float zRotate = 0;
 
   public Camera() {
     this.pos = new PVector(0, 0, 0);
@@ -52,16 +55,32 @@ public class Camera {
     Triangles.add(a);
   }
   public void rotateX (float deg) {
+    xRotate += deg;
+    rotateAxisOnY(viewX, -yRotate);
+    rotateAxisOnY(viewY, -yRotate);
+    rotateAxisOnY(viewZ, -yRotate);
     rotateAxisOnX(viewX, deg);
     rotateAxisOnX(viewY, deg);
     rotateAxisOnX(viewZ, deg);
+    rotateAxisOnY(viewX, yRotate);
+    rotateAxisOnY(viewY, yRotate);
+    rotateAxisOnY(viewZ, yRotate);
+    println(viewY);
   }
   public void rotateY (float deg) {
+    yRotate += deg;
+    rotateAxisOnX(viewX, -xRotate);
+    rotateAxisOnX(viewY, -xRotate);
+    rotateAxisOnX(viewZ, -xRotate);
     rotateAxisOnY(viewX, deg);
     rotateAxisOnY(viewY, deg);
     rotateAxisOnY(viewZ, deg);
+    rotateAxisOnX(viewX, xRotate);
+    rotateAxisOnX(viewY, xRotate);
+    rotateAxisOnX(viewZ, xRotate);
   }
   public void rotateZ (float deg) {
+    zRotate += deg;
     rotateAxisOnZ(viewX, deg);
     rotateAxisOnZ(viewY, deg);
     rotateAxisOnZ(viewZ, deg);
@@ -80,12 +99,11 @@ public class Camera {
     pos.add(dir);
     for (Sphere s : world) {
       if (s.isWithin(pos)) {
-        //vel = new PVector(0, 0, 0);
         pos = s.displace(pos);
         PVector normal = s.getNormal(pos).normalize();
         vel.div(2);
         vel.add(project(vel, normal).setMag(vel.dot(normal)*2));
-        println(s.getNormal(pos));
+        //println(s.getNormal(pos));
       }
     }
   }
