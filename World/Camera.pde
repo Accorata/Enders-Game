@@ -18,10 +18,10 @@ public class Camera {
     }
     Collections.sort(Triangles);
     for (Triangle t : Triangles) {
-      proj(t);
+      projTri(t);
     }
   }
-  private boolean proj (Triangle t) {
+  private boolean projTri (Triangle t) {
     ArrayList<PVector> points = new ArrayList<PVector>();
     for (PVector point : t.getPoints()) {
       PVector projected = projPoint(point);
@@ -80,8 +80,11 @@ public class Camera {
     pos.add(dir);
     for (Sphere s : world) {
       if (s.isWithin(pos)) {
-        vel = new PVector(0, 0, 0);
+        //vel = new PVector(0, 0, 0);
         pos = s.displace(pos);
+        PVector normal = s.getNormal(pos).normalize();
+        vel.div(2);
+        vel.add(project(vel, normal).setMag(vel.dot(normal)*2));
         println(s.getNormal(pos));
       }
     }
