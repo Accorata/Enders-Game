@@ -81,6 +81,8 @@ public class Camera {
     for (Sphere s : world) {
       if (s.isWithin(pos)) {
         vel = new PVector(0, 0, 0);
+        pos = s.displace(pos);
+        println(s.getNormal(pos));
       }
     }
   }

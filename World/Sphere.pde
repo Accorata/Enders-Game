@@ -14,7 +14,10 @@ public class Sphere {
     return dist(loc, center) <= radius;
   }
   public PVector getNormal (PVector loc) {
-    return center.copy().sub(loc);
+    return loc.copy().sub(center);
+  }
+  public PVector displace (PVector loc) {
+    return center.copy().add(getNormal(loc).setMag(radius+0.01));
   }
   public void addToCamera (Camera c) {
     for (Triangle t : triangles) {
