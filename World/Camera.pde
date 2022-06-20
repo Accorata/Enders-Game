@@ -67,7 +67,7 @@ public class Camera {
     rotateAxisOnZ(viewZ, deg);
   }
   public void boost (PVector dir) {
-    PVector translated = new PVector(0,0,0);
+    PVector translated = new PVector(0, 0, 0);
     translated.add(viewX.copy().mult(dir.x));
     translated.add(viewY.copy().mult(dir.y));
     translated.add(viewZ.copy().mult(dir.z));
@@ -78,6 +78,10 @@ public class Camera {
   }
   public void move (PVector dir) {
     pos.add(dir);
-    
+    for (Sphere s : world) {
+      if (s.isWithin(pos)) {
+        vel = new PVector(0, 0, 0);
+      }
+    }
   }
 }
