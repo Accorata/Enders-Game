@@ -24,10 +24,11 @@ public class Camera {
       //noStroke();
       projTri(t);
     }
-    PVector one = projPoint(thing.getPos());
-    //PVector two = projPoint(pos.copy().add(viewZ).sub(viewY).sub(viewX));
-    if (one != null) {
-      line(one.x, one.y, width-100, height-100);
+    for (Tether t : tethers) {
+      PVector one = projPoint(t.getPos());
+      if (one != null) {
+        line(one.x, one.y, width-100, height-100);
+      }
     }
   }
 
@@ -119,7 +120,9 @@ public class Camera {
         vel.add(project(vel, normal).setMag(vel.dot(normal)*2));
       }
     }
-    dir.add(thing.force(pos));
+    for (Tether t : tethers) {
+      dir.add(t.force(pos));
+    }
   }
   public boolean attemptGrab () {
     boolean grabbed = false;
