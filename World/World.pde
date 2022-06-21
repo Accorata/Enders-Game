@@ -8,7 +8,7 @@ PVector c = new PVector (100, 0, 100);
 Triangle one = new Triangle(c, c, c, color(0, 10));
 PVector dir = new PVector(0, 0, 0);
 float speed = 0.01;
-final boolean test = true;
+final boolean test = false;
 public boolean grab = false;
 
 
@@ -95,6 +95,9 @@ void keyPressed() {
     break;
   case 'r':
     tethers = new ArrayList<Tether>();
+    break;
+  case 'v':
+    cam.vel = new PVector(0, 0, 0);
     break;
   }
 }

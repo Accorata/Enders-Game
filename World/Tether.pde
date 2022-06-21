@@ -8,19 +8,21 @@ public class Tether {
 
   public Tether (PVector pos_) {
     points[0] = new PVector(0, 4, 0);
-    points[1] = new PVector(sqrt(3)*2, 2, 0);
-    points[2] = new PVector(2, sqrt(3)*2, 0);
-    this.dir = new PVector(1, 0, 0);
+    points[1] = new PVector(sqrt(3)*2, -2, 0);
+    points[2] = new PVector(-sqrt(3)*2, -2, 0);
+    this.dir = new PVector(0, 0, 4);
     this.pos = pos_;
     this.triangles = calcTriangles();
   }
   
   public ArrayList<Triangle> calcTriangles () {
     ArrayList<Triangle> ts = new ArrayList<Triangle>();
-    ts.add(new Triangle(points[0].copy().div(3).add(pos), points[1].copy().div(3).add(pos), points[2].copy().div(3).add(pos), color(0)));
-    //ts.add(new Triangle(points[0].copy().add(pos), points[1].copy().div(3).add(pos), points[2].copy().div(3).add(pos), color(0)));
-    //ts.add(new Triangle(points[0].copy().div(3).add(pos), points[1].copy().add(pos), points[2].copy().div(3).add(pos), color(0)));
-    ts.add(new Triangle(points[0].copy().div(3).add(pos), points[1].copy().div(3).add(pos), points[2].copy().add(pos), color(0)));
+    ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().div(-3).add(pos), points[2].copy().div(-3).add(pos), color(0)));
+    ts.add(new Triangle(points[0].copy().add(pos), points[1].copy().div(-3).add(pos), points[2].copy().div(-3).add(pos), color(0)));
+    ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().add(pos), points[2].copy().div(-3).add(pos), color(0)));
+    ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().div(-3).add(pos), points[2].copy().add(pos), color(0)));
+    ts.add(new Triangle(points[0].copy().div(-3).add(pos), pos.copy().add(dir), points[2].copy().add(pos).add(dir), color(0)));
+    ts.add(new Triangle(points[1].copy().div(-3).add(pos), pos.copy().add(dir), points[2].copy().add(pos).add(dir), color(0)));
     return ts;
   }
   public PVector force(PVector loc) {
