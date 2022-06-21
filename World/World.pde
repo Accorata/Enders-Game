@@ -8,7 +8,7 @@ PVector c = new PVector (100, 0, 100);
 Triangle one = new Triangle(c, c, c, color(0, 10));
 PVector dir = new PVector(0, 0, 0);
 float speed = 0.01;
-final boolean test = false;
+final boolean test = true;
 public boolean grab = false;
 
 
@@ -87,7 +87,11 @@ void keyPressed() {
     grab = cam.attemptGrab();
     break;
   case 't':
-    tethers.add(new Tether(cam.pos.copy()));
+    Tether teth = new Tether(cam.pos.copy());
+    tethers.add(teth);
+    for (Triangle t : teth.calcTriangles()) {
+      cam.addTriangle(t);
+    }
     break;
   case 'r':
     tethers = new ArrayList<Tether>();
