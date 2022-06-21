@@ -73,19 +73,19 @@ public class Camera {
     rotateAxisOnY(viewX, yRotate);
     rotateAxisOnY(viewY, yRotate);
     rotateAxisOnY(viewZ, yRotate);
-    println(viewY);
+    //println(viewY);
   }
   public void rotateY (float deg) {
     yRotate += deg;
-    rotateAxisOnX(viewX, -xRotate);
-    rotateAxisOnX(viewY, -xRotate);
-    rotateAxisOnX(viewZ, -xRotate);
+    //rotateAxisOnX(viewX, -xRotate);
+    //rotateAxisOnX(viewY, -xRotate);
+    //rotateAxisOnX(viewZ, -xRotate);
     rotateAxisOnY(viewX, deg);
     rotateAxisOnY(viewY, deg);
     rotateAxisOnY(viewZ, deg);
-    rotateAxisOnX(viewX, xRotate);
-    rotateAxisOnX(viewY, xRotate);
-    rotateAxisOnX(viewZ, xRotate);
+    //rotateAxisOnX(viewX, xRotate);
+    //rotateAxisOnX(viewY, xRotate);
+    //rotateAxisOnX(viewZ, xRotate);
   }
   public void rotateZ (float deg) {
     zRotate += deg;
