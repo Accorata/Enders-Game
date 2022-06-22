@@ -13,13 +13,14 @@ public void rotateAxisOnX(PVector axis, float deg) {
 }
 
 public void rotateAxisOnY(PVector axis, float deg) {
-  if (deg != 0) {
-    float rad = radians(deg);
-    PVector temp = new PVector(axis.x, axis.z);
-    temp.rotate(rad);
-    axis.x = temp.x;
-    axis.z = temp.y;
-  }
+  //if (deg != 0) {
+  //  float rad = radians(deg);
+  //  PVector temp = new PVector(axis.x, axis.z);
+  //  temp.rotate(rad);
+  //  axis.x = temp.x;
+  //  axis.z = temp.y;
+  //}
+  rotateOn(axis, new PVector(0,1,0), deg);
 }
 
 public void rotateAxisOnZ(PVector axis, float deg) {
@@ -30,6 +31,19 @@ public void rotateAxisOnZ(PVector axis, float deg) {
     axis.x = temp.x;
     axis.y = temp.y;
   }
+}
+
+public void rotateOn(PVector pv, PVector axis, float deg) {
+  float sin = sin(radians(deg));
+  float cos = cos(radians(deg));
+  PVector rowOne = new PVector(cos+sq(axis.x)*(1-cos), axis.x*axis.y*(1-cos)-axis.z*sin, axis.x*axis.z*(1-cos)+axis.y*sin);
+  PVector rowTwo = new PVector(axis.x*axis.y*(1-cos)+axis.z*sin, cos+sq(axis.y)*(1-cos), axis.y*axis.z*(1-cos)-axis.x*sin);
+  PVector rowThree = new PVector(axis.x*axis.z*(1-cos)-axis.y*sin, axis.y*axis.z*(1-cos)+axis.x*sin, cos+sq(axis.z)*(1-cos));
+  PVector ans = new PVector(0, 0, 0);
+  ans.add(rowOne.mult(pv.x));
+  ans.add(rowTwo.mult(pv.y));
+  ans.add(rowThree.mult(pv.z));
+  pv = ans;
 }
 
 public void addToWorld (Sphere obj) {
