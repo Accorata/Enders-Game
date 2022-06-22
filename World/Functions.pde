@@ -61,6 +61,10 @@ public color darken (color c, float x) {
   return color(r, g, b);
 }
 
+public float sigmoid (float x) {
+  return 1/(1+exp(-x));
+}
+
 PVector project(PVector u, PVector v) {
   return v.copy().mult(u.dot(v)/sq(v.mag()));
 }

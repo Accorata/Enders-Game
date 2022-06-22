@@ -1,5 +1,6 @@
 public class Tether {
   private float len = 100;
+  private float displacement;
   private float springConst = 0.001;
   private PVector pos;
   private PVector dir;
@@ -82,7 +83,7 @@ public class Tether {
   }
   public PVector force(PVector loc) {
     PVector force = pos.copy().sub(loc);
-    float displacement = force.mag() - len;
+    this.displacement = force.mag() - len;
     if (displacement < 0) return new PVector(0, 0, 0);
     force.mult(displacement);
     force.mult(springConst);
