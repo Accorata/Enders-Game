@@ -36,7 +36,7 @@ public class Camera {
     for (Tether t : tethers) {
       PVector one = projPoint(t.getPos());
       if (one != null) {
-        strokeWeight(-t.displacement);
+        strokeWeight(sigmoid(t.displacement/-4)*1.5);
         line(one.x, one.y, width-100, height-100);
       }
     }
