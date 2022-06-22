@@ -83,6 +83,10 @@ public class Camera {
     translated.add(viewZ.copy().mult(dir.z));
     vel.add(translated);
   }
+  public void setDirTowards (PVector dir, float speed) {
+    vel.div(1.1);
+    vel.add(dir.setMag(speed));
+  }
   public void move () {
     if (grab) {
       if (vel.mag() < 0.2) {

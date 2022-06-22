@@ -40,6 +40,7 @@ void draw () {
   text(""+near, 100, 100);
   boolean push = near;
   if (push) dir.mult(10);
+  //if (dir.mag() < speed*2) dir.div(10);
   if (!test) {
     cam.boost(dir);
     cam.move();
@@ -102,7 +103,7 @@ void keyPressed() {
   case 'f':
     for (Tether t : tethers) {
       if (t.attached) {
-        cam.boost((t.pos.copy().sub(cam.pos)).setMag(0.5));
+        cam.setDirTowards(t.pos.copy().sub(cam.pos), 0.3);
       }
     }
     break;
