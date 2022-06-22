@@ -109,14 +109,17 @@ public class Camera {
       }
     }
   }
-  public boolean attemptGrab () {
-    boolean grabbed = false;
+  public boolean checkNear () {
     for (Sphere s : world) {
       if (s.isWithin(pos, 20)) {
-        grabbed = true;
-        break;
+        return true;
       }
     }
+    return false;
+  }
+  public boolean attemptGrab () {
+    boolean grabbed = false;
+    if (near) grabbed = true;
     return grabbed;
   }
 }

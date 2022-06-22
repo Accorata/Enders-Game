@@ -10,6 +10,7 @@ PVector dir = new PVector(0, 0, 0);
 float speed = 0.01;
 final boolean test = false;
 public boolean grab = false;
+public boolean near = false;
 
 void setup () {
   //tethers.add(new Tether(cam.pos.copy()));
@@ -34,6 +35,7 @@ void draw () {
   line(width/2-20, height/2, width/2+20, height/2);
   line(width/2, height/2-20, width/2, height/2+20);
   //showVisualization();
+  near = cam.checkNear();
   if (!test) {
     cam.boost(dir);
     cam.move();

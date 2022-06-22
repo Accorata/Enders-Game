@@ -1,6 +1,6 @@
 public class Tether {
   private float len = 100;
-  private float springConst = 0.0001;
+  private float springConst = 0.001;
   private PVector pos;
   private PVector dir;
   private ArrayList<PVector> points;
