@@ -36,12 +36,17 @@ void draw () {
   line(width/2, height/2-20, width/2, height/2+20);
   //showVisualization();
   near = cam.checkNear();
+  fill(0);
+  text(""+near, 100, 100);
+  boolean push = near;
+  if (push) dir.mult(10);
   if (!test) {
     cam.boost(dir);
     cam.move();
   } else {
     cam.move(dir);
   }
+  if (push) dir.div(10);
   for (Tether t : tethers) {
     t.update();
   }
