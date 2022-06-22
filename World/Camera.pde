@@ -6,9 +6,6 @@ public class Camera {
   private PVector viewX = new PVector(1, 0, 0);
   private PVector viewY = new PVector(0, 1, 0);
   private PVector viewZ = new PVector(0, 0, 1);
-  private float xRotate = 0;
-  private float yRotate = 0;
-  private float zRotate = 0;
 
   public Camera() {
     this.pos = new PVector(0, 0, 0);
@@ -63,36 +60,14 @@ public class Camera {
     Triangles.add(a);
   }
   public void rotateX (float deg) {
-    xRotate += deg;
-    //rotateAxisOnY(viewX, -yRotate);
-    //rotateAxisOnY(viewY, -yRotate);
-    //rotateAxisOnY(viewZ, -yRotate);
     viewY = rotateOn(viewY, viewX, deg);
     viewZ = rotateOn(viewZ, viewX, deg);
     viewX = rotateOn(viewX, viewX, deg);
-    //rotateAxisOnX(viewX, deg);
-    //rotateAxisOnX(viewY, deg);
-    //rotateAxisOnX(viewZ, deg);
-    //rotateAxisOnY(viewX, yRotate);
-    //rotateAxisOnY(viewY, yRotate);
-    //rotateAxisOnY(viewZ, yRotate);
-    //println(viewY);
   }
   public void rotateY (float deg) {
-    yRotate += deg;
-    //rotateAxisOnX(viewX, -xRotate);
-    //rotateAxisOnX(viewY, -xRotate);
-    //rotateAxisOnX(viewZ, -xRotate);
     viewX = rotateOn(viewX, viewY, deg);
     viewZ = rotateOn(viewZ, viewY, deg);
     viewY = rotateOn(viewY, viewY, deg);
-    
-    //rotateAxisOnY(viewX, deg);
-    //rotateAxisOnY(viewY, deg);
-    //rotateAxisOnY(viewZ, deg);
-    //rotateAxisOnX(viewX, xRotate);
-    //rotateAxisOnX(viewY, xRotate);
-    //rotateAxisOnX(viewZ, xRotate);
   }
   public void rotateZ (float deg) {
     viewX = rotateOn(viewX, viewZ, deg);
