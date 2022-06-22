@@ -6,8 +6,8 @@ public class Tether {
   private ArrayList<PVector> points;
   private ArrayList<Triangle> triangles;
 
-  public Tether (PVector pos_) {
-    this.dir = new PVector(0, 0, 2);
+  public Tether (PVector pos_, PVector dir_) {
+    this.dir = dir_;
     this.pos = pos_;
     this.points = calcPoints(dir);
     this.triangles = calcTriangles(points);
@@ -15,9 +15,9 @@ public class Tether {
   }
 
   private ArrayList<PVector> calcPoints(PVector dir) {
-    PVector p1 = new PVector(0, 4, 0);
-    PVector p2 = new PVector(sqrt(3)*2, -2, 0);
-    PVector p3 = new PVector(-sqrt(3)*2, -2, 0);
+    PVector p1 = cam.viewY.copy().mult(4);
+    PVector p2 = cam.viewX.copy().mult(sqrt(3)*2).add(cam.viewY.copy().mult(-2));
+    PVector p3 = cam.viewX.copy().mult(-sqrt(3)*2).add(cam.viewY.copy().mult(-2));
     ArrayList<PVector> ps = new ArrayList<PVector>();
     ps.add(p1.copy().add(pos));
     ps.add(p2.copy().add(pos));
