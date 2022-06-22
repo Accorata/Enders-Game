@@ -78,12 +78,16 @@ public class Camera {
     near = (closest != null);
     if (near) {
       PVector norm = closest.getNormal(cam.pos);
-      PVector translated = new PVector(0, 0, 0);
-      translated.add(viewX.copy().mult(norm.x));
-      translated.add(viewY.copy().mult(norm.y));
-      translated.add(viewZ.copy().mult(norm.z));
-      translated.setMag(350);
-      line(width/2, height/2, width/2+translated.x, height/2+translated.y);
+      PVector translated = projPoint(norm.mult(-1));
+      //new PVector(0, 0, 0);
+      //translated.add(viewX.copy().mult(norm.x));
+      //translated.add(viewY.copy().mult(norm.y));
+      //translated.add(viewZ.copy().mult(norm.z));
+      //if (translated
+      if (translated != null) {
+        translated.setMag(350);
+        line(width/2, height/2, translated.x, translated.y);
+      }
     }
     fill(0);
     text(""+near, 100, 100);
