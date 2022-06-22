@@ -99,9 +99,11 @@ public class Camera {
         vel.add(project(vel, normal).setMag(vel.dot(normal)*2));
       }
     }
-    //for (Tether t : tethers) {
-    //  dir.add(t.force(pos));
-    //}
+    for (Tether t : tethers) {
+      if (t.attached) {
+        dir.add(t.force(pos));
+      }
+    }
   }
   public boolean attemptGrab () {
     boolean grabbed = false;

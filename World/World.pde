@@ -40,6 +40,9 @@ void draw () {
   } else {
     cam.move(dir);
   }
+  for (Tether t : tethers) {
+    t.update();
+  }
   //println(frameRate);
 }
 

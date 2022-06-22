@@ -5,13 +5,13 @@ public class Tether {
   private PVector dir;
   private ArrayList<PVector> points;
   private ArrayList<Triangle> triangles;
+  private boolean attached = false;
 
   public Tether (PVector pos_, PVector dir_) {
     this.dir = dir_;
     this.pos = pos_;
     this.points = calcPoints(dir);
     this.triangles = calcTriangles(points);
-    pos.add(dir.copy().div(-1.5));
   }
 
   private ArrayList<PVector> calcPoints(PVector dir) {
@@ -58,6 +58,13 @@ public class Tether {
     ts.add(new Triangle(points.get(2), points.get(13), points.get(15), clr));
     return ts;
   }
+  public void update () {
+    for (Sphere s : world) {
+      if (s.isWithin(pos, 20)) {
+        attached = true;
+      }
+    }
+  }
   public ArrayList<Triangle> getTriangles () {
     return triangles;
   }
@@ -70,6 +77,6 @@ public class Tether {
     return force;
   }
   public PVector getPos() {
-    return pos;
+    return this.pos.copy().add(this.dir.copy().div(-1.5));
   }
 }
