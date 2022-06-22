@@ -51,7 +51,7 @@ void draw () {
   for (Tether t : tethers) {
     t.update();
   }
-  //println(frameRate);
+  println(frameRate);
 }
 
 void keyPressed() {

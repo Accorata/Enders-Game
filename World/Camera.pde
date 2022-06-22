@@ -25,6 +25,12 @@ public class Camera {
     //noStroke();
     for (Triangle t : triangles) {
       projTri(t);
+      t.light = 0;
+    }
+    int i = triangles.size()-1;
+    while (i >= 0 && triangles.get(i).close < 200) {
+      triangles.get(i).light = 100-triangles.get(i).close/2;
+      i--;
     }
     for (Tether t : tethers) {
       PVector one = projPoint(t.getPos());
