@@ -77,12 +77,12 @@ void keyPressed() {
   case 'd':
     dir.x = -speed;
     break;
-    //case 'u':
-    //  cam.rotateZ(-10);
-    //  break;
-    //case 'o':
-    //  cam.rotateZ(10);
-    //  break;
+  case 'u':
+    cam.rotateZ(10);
+    break;
+  case 'o':
+    cam.rotateZ(-10);
+    break;
   case 'g':
     grab = cam.attemptGrab();
     break;

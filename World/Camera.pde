@@ -67,9 +67,12 @@ public class Camera {
     //rotateAxisOnY(viewX, -yRotate);
     //rotateAxisOnY(viewY, -yRotate);
     //rotateAxisOnY(viewZ, -yRotate);
-    rotateAxisOnX(viewX, deg);
-    rotateAxisOnX(viewY, deg);
-    rotateAxisOnX(viewZ, deg);
+    viewY = rotateOn(viewY, viewX, deg);
+    viewZ = rotateOn(viewZ, viewX, deg);
+    viewX = rotateOn(viewX, viewX, deg);
+    //rotateAxisOnX(viewX, deg);
+    //rotateAxisOnX(viewY, deg);
+    //rotateAxisOnX(viewZ, deg);
     //rotateAxisOnY(viewX, yRotate);
     //rotateAxisOnY(viewY, yRotate);
     //rotateAxisOnY(viewZ, yRotate);
@@ -80,9 +83,10 @@ public class Camera {
     //rotateAxisOnX(viewX, -xRotate);
     //rotateAxisOnX(viewY, -xRotate);
     //rotateAxisOnX(viewZ, -xRotate);
-    viewX = rotateOn(viewX, new PVector(0,1,0), deg);
-    viewY = rotateOn(viewY, new PVector(0,1,0), deg);
-    viewZ = rotateOn(viewZ, new PVector(0,1,0), deg);
+    viewX = rotateOn(viewX, viewY, deg);
+    viewZ = rotateOn(viewZ, viewY, deg);
+    viewY = rotateOn(viewY, viewY, deg);
+    
     //rotateAxisOnY(viewX, deg);
     //rotateAxisOnY(viewY, deg);
     //rotateAxisOnY(viewZ, deg);
@@ -91,10 +95,9 @@ public class Camera {
     //rotateAxisOnX(viewZ, xRotate);
   }
   public void rotateZ (float deg) {
-    zRotate += deg;
-    rotateAxisOnZ(viewX, deg);
-    rotateAxisOnZ(viewY, deg);
-    rotateAxisOnZ(viewZ, deg);
+    viewX = rotateOn(viewX, viewZ, deg);
+    viewY = rotateOn(viewY, viewZ, deg);
+    viewZ = rotateOn(viewZ, viewZ, deg);
   }
   public void boost (PVector dir) {
     PVector translated = new PVector(0, 0, 0);
