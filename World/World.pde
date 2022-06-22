@@ -95,6 +95,13 @@ void keyPressed() {
   case 'r':
     tethers = new ArrayList<Tether>();
     break;
+  case 'f':
+    for (Tether t : tethers) {
+      if (t.attached) {
+        cam.boost((t.pos.copy().sub(cam.pos)).setMag(0.5));
+      }
+    }
+    break;
   case 'v':
     cam.vel = new PVector(0, 0, 0);
     break;
