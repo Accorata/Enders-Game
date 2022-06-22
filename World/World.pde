@@ -35,7 +35,11 @@ PVector sightInv;
 void draw () {
   background(255);
   cam.display();
-  showVisualization();
+  strokeWeight(2);
+  stroke(0);
+  line(width/2-20, height/2, width/2+20, height/2);
+  line(width/2, height/2-20, width/2, height/2+20);
+  //showVisualization();
   if (!test) {
     cam.boost(dir);
     cam.move();

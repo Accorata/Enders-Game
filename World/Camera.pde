@@ -17,8 +17,9 @@ public class Camera {
       t.updateClose();
     }
     Collections.sort(Triangles);
+    strokeWeight(1);
+    //noStroke();
     for (Triangle t : Triangles) {
-      //noStroke();
       projTri(t);
     }
     for (Tether t : tethers) {
@@ -44,16 +45,13 @@ public class Camera {
   }
   private PVector projPoint(PVector point) {
     PVector movedPoint = point.copy().sub(pos);
+    float rotatedZ = movedPoint.dot(viewZ.copy().normalize());
+    if (rotatedZ < 0) return null;
     float rotatedX = movedPoint.dot(viewX.copy().normalize());
     float rotatedY = movedPoint.dot(viewY.copy().normalize());
-    float rotatedZ = movedPoint.dot(viewZ.copy().normalize());
     PVector ans = new PVector (0, 0);
-    if (rotatedZ > 0) {
-      ans.x = (sight * -rotatedX/rotatedZ)+width/2;
-      ans.y = (sight * -rotatedY/rotatedZ)+height/2;
-    } else {
-      return null;
-    }
+    ans.x = (sight * -rotatedX/rotatedZ)+width/2;
+    ans.y = (sight * -rotatedY/rotatedZ)+height/2;
     return ans;
   }
   public void addTriangle (Triangle a) {
