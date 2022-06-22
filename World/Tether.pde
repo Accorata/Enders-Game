@@ -7,10 +7,11 @@ public class Tether {
   private ArrayList<Triangle> triangles;
 
   public Tether (PVector pos_) {
-    this.dir = new PVector(0, 0, 4);
+    this.dir = new PVector(0, 0, 2);
     this.pos = pos_;
     this.points = calcPoints(dir);
     this.triangles = calcTriangles(points);
+    pos.add(dir.copy().div(-1.5));
   }
 
   private ArrayList<PVector> calcPoints(PVector dir) {
@@ -24,19 +25,37 @@ public class Tether {
     ps.add(p1.copy().div(-3).add(pos));
     ps.add(p2.copy().div(-3).add(pos));
     ps.add(p3.copy().div(-3).add(pos));
+    ps.add(dir.copy().div(-1.5).add(pos));
+    ps.add(ps.get(0).copy().add(dir));
+    ps.add(ps.get(0).copy().add(ps.get(4)).div(2));
+    ps.add(ps.get(0).copy().add(ps.get(5)).div(2));
+    ps.add(ps.get(1).copy().add(dir));
+    ps.add(ps.get(1).copy().add(ps.get(3)).div(2));
+    ps.add(ps.get(1).copy().add(ps.get(5)).div(2));
+    ps.add(ps.get(2).copy().add(dir));
+    ps.add(ps.get(2).copy().add(ps.get(3)).div(2));
+    ps.add(ps.get(2).copy().add(ps.get(4)).div(2));
     return ps;
   }
-
   private ArrayList<Triangle> calcTriangles (ArrayList<PVector> points) {
     ArrayList<Triangle> ts = new ArrayList<Triangle>();
     color clr = color(100);
-    //ts.add(new Triangle(points[0].copy().div(-3).add(pos), pos.copy().add(pos).add(dir.copy().div(-2)), points[2].copy(), clr));
-    //ts.add(new Triangle(points[1].copy().div(-3).add(pos), pos.copy().add(pos).add(dir.copy().div(-2)), points[2].copy(), clr));
-    ts.add(new Triangle(points.get(0), points.get(1), points.get(2), clr));
-    //ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().div(-3).add(pos), points[2].copy().div(-3).add(pos), clr));
-    //ts.add(new Triangle(points[0].copy().add(pos), points[1].copy().div(-3).add(pos), points[2].copy().div(-3).add(pos), clr));
-    //ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().add(pos), points[2].copy().div(-3).add(pos), clr));
-    //ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().div(-3).add(pos), points[2].copy().add(pos), clr));
+    ts.add(new Triangle(points.get(0), points.get(4), points.get(5), clr));
+    ts.add(new Triangle(points.get(3), points.get(1), points.get(5), clr));
+    ts.add(new Triangle(points.get(3), points.get(4), points.get(2), clr));
+    ts.add(new Triangle(points.get(3), points.get(4), points.get(5), clr));
+    ts.add(new Triangle(points.get(0), points.get(6), points.get(5), clr));
+    ts.add(new Triangle(points.get(0), points.get(4), points.get(6), clr));
+    ts.add(new Triangle(points.get(6), points.get(1), points.get(5), clr));
+    ts.add(new Triangle(points.get(3), points.get(1), points.get(6), clr));
+    ts.add(new Triangle(points.get(6), points.get(4), points.get(2), clr));
+    ts.add(new Triangle(points.get(3), points.get(6), points.get(2), clr));
+    ts.add(new Triangle(points.get(0), points.get(7), points.get(8), clr));
+    ts.add(new Triangle(points.get(0), points.get(7), points.get(9), clr));
+    ts.add(new Triangle(points.get(1), points.get(10), points.get(11), clr));
+    ts.add(new Triangle(points.get(1), points.get(10), points.get(12), clr));
+    ts.add(new Triangle(points.get(2), points.get(13), points.get(14), clr));
+    ts.add(new Triangle(points.get(2), points.get(13), points.get(15), clr));
     return ts;
   }
   public ArrayList<Triangle> getTriangles () {
