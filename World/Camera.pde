@@ -32,6 +32,7 @@ public class Camera {
       triangles.get(i).light = 100-triangles.get(i).close/2;
       i--;
     }
+    stroke(0);
     for (Tether t : tethers) {
       PVector one = projPoint(t.getPos());
       if (one != null) {
@@ -49,7 +50,9 @@ public class Camera {
       }
       points.add(projected);
     }
-    fill(darken(t.clr, 100-t.light));
+    color c = darken(t.clr, 100-t.light);
+    fill(c);
+    stroke(c);
     triangle(points.get(0).x, points.get(0).y, points.get(1).x, points.get(1).y, points.get(2).x, points.get(2).y);
     return true;
   }

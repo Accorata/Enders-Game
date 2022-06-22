@@ -15,8 +15,8 @@ public boolean near = false;
 void setup () {
   //tethers.add(new Tether(cam.pos.copy()));
   //Sphere outside = new Sphere (new PVector(0, 0, 0), 10000, color(255), 20, 20);
-  Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 20, 20);
-  Sphere s2 = new Sphere (new PVector(-200, 0, 600), 100, color(200, 0, 0), 20, 20);
+  Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 10, 20);
+  Sphere s2 = new Sphere (new PVector(-200, 0, 600), 100, color(200, 0, 0), 10, 20);
   //outside.addToCamera(cam);
   addToWorld(s);
   addToWorld(s2);
