@@ -1,3 +1,8 @@
+PVector sight = new PVector(0, -300);
+PVector xAxis = new PVector(-150, 0);
+PVector xAxisInv;
+PVector sightInv;
+
 void showVisualization () {
   recalcInverses();
   strokeWeight(1);

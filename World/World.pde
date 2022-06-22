@@ -11,7 +11,6 @@ float speed = 0.01;
 final boolean test = false;
 public boolean grab = false;
 
-
 void setup () {
   //tethers.add(new Tether(cam.pos.copy()));
   //Sphere outside = new Sphere (new PVector(0, 0, 0), 10000, color(255), 20, 20);
@@ -26,12 +25,7 @@ void setup () {
     speed *=1000;
   }
 }
-PVector sight = new PVector(0, -300);
-PVector xAxis = new PVector(-150, 0);
-PVector xAxisInv;
-PVector sightInv;
-//PVector yAxis = new PVector(0, -150, 0);
-//Tether thing = new Tether(new PVector(100, 100, 100));
+
 void draw () {
   background(255);
   cam.display();
@@ -46,8 +40,6 @@ void draw () {
   } else {
     cam.move(dir);
   }
-
-  //println(cam.num);
   //println(frameRate);
 }
 
@@ -93,7 +85,7 @@ void keyPressed() {
   case 't':
     Tether teth = new Tether(cam.pos.copy());
     tethers.add(teth);
-    for (Triangle t : teth.calcTriangles()) {
+    for (Triangle t : teth.getTriangles()) {
       cam.addTriangle(t);
     }
     break;
@@ -105,6 +97,7 @@ void keyPressed() {
     break;
   }
 }
+
 void keyReleased () {
   switch(key) {
   case 'w':

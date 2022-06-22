@@ -3,30 +3,44 @@ public class Tether {
   private float springConst = 0.0001;
   private PVector pos;
   private PVector dir;
-  private PVector[] points = new PVector[3];
+  private ArrayList<PVector> points;
   private ArrayList<Triangle> triangles;
 
   public Tether (PVector pos_) {
-    points[0] = new PVector(0, 4, 0);
-    points[1] = new PVector(sqrt(3)*2, -2, 0);
-    points[2] = new PVector(-sqrt(3)*2, -2, 0);
     this.dir = new PVector(0, 0, 4);
     this.pos = pos_;
-    this.triangles = calcTriangles();
+    this.points = calcPoints(dir);
+    this.triangles = calcTriangles(points);
   }
-  
-  //public ArrayList<PVector> calcPoints() ?
-  public ArrayList<Triangle> calcTriangles () {
+
+  private ArrayList<PVector> calcPoints(PVector dir) {
+    PVector p1 = new PVector(0, 4, 0);
+    PVector p2 = new PVector(sqrt(3)*2, -2, 0);
+    PVector p3 = new PVector(-sqrt(3)*2, -2, 0);
+    ArrayList<PVector> ps = new ArrayList<PVector>();
+    ps.add(p1.copy().add(pos));
+    ps.add(p2.copy().add(pos));
+    ps.add(p3.copy().add(pos));
+    ps.add(p1.copy().div(-3).add(pos));
+    ps.add(p2.copy().div(-3).add(pos));
+    ps.add(p3.copy().div(-3).add(pos));
+    return ps;
+  }
+
+  private ArrayList<Triangle> calcTriangles (ArrayList<PVector> points) {
     ArrayList<Triangle> ts = new ArrayList<Triangle>();
     color clr = color(100);
-    ts.add(new Triangle(points[0].copy().div(-3).add(pos), pos.copy().add(pos).add(dir.copy().div(-2)), points[2].copy(), clr));
-    ts.add(new Triangle(points[1].copy().div(-3).add(pos), pos.copy().add(pos).add(dir.copy().div(-2)), points[2].copy(), clr));
-
-    ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().div(-3).add(pos), points[2].copy().div(-3).add(pos), clr));
-    ts.add(new Triangle(points[0].copy().add(pos), points[1].copy().div(-3).add(pos), points[2].copy().div(-3).add(pos), clr));
-    ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().add(pos), points[2].copy().div(-3).add(pos), clr));
-    ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().div(-3).add(pos), points[2].copy().add(pos), clr));
-        return ts;
+    //ts.add(new Triangle(points[0].copy().div(-3).add(pos), pos.copy().add(pos).add(dir.copy().div(-2)), points[2].copy(), clr));
+    //ts.add(new Triangle(points[1].copy().div(-3).add(pos), pos.copy().add(pos).add(dir.copy().div(-2)), points[2].copy(), clr));
+    ts.add(new Triangle(points.get(0), points.get(1), points.get(2), clr));
+    //ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().div(-3).add(pos), points[2].copy().div(-3).add(pos), clr));
+    //ts.add(new Triangle(points[0].copy().add(pos), points[1].copy().div(-3).add(pos), points[2].copy().div(-3).add(pos), clr));
+    //ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().add(pos), points[2].copy().div(-3).add(pos), clr));
+    //ts.add(new Triangle(points[0].copy().div(-3).add(pos), points[1].copy().div(-3).add(pos), points[2].copy().add(pos), clr));
+    return ts;
+  }
+  public ArrayList<Triangle> getTriangles () {
+    return triangles;
   }
   public PVector force(PVector loc) {
     PVector force = pos.copy().sub(loc);
