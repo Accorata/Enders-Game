@@ -51,6 +51,13 @@ public void addToWorld (Sphere obj) {
   world.add(obj);
 }
 
+public color darken (color c) {
+  int b = 255;
+  int g = 255<<8;
+  int r = 255<<16;
+  return color(r, g, b);
+}
+
 PVector project(PVector u, PVector v) {
   return v.copy().mult(u.dot(v)/sq(v.mag()));
 }

@@ -66,7 +66,7 @@ public class Tether {
       }
       for (Sphere s : world) {
         if (s.isWithin(pos, 0)) {
-          pos = s.displace(pos);
+          this.pos = s.displace(pos);
           attached = true;
           len =  dist(pos, cam.pos);
           if (len < 200) len = 200;

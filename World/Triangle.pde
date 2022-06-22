@@ -3,6 +3,7 @@ public class Triangle implements Comparable<Triangle> {
   private color clr;
   private PVector center;
   private float close;
+  private float light = 0;
 
   public Triangle (PVector a_, PVector b_, PVector c_, color clr_) {
     this.points[0] = a_;
