@@ -59,9 +59,17 @@ public class Tether {
     return ts;
   }
   public void update () {
-    for (Sphere s : world) {
-      if (s.isWithin(pos, 20)) {
-        attached = true;
+    if (!attached) {
+      pos.add(dir);
+      for (PVector point : points) {
+        point.add(dir);
+      }
+      for (Sphere s : world) {
+        if (s.isWithin(pos, 0)) {
+          attached = true;
+          len =  dist(pos, cam.pos);
+          if (len < 200) len = 200;
+        }
       }
     }
   }
