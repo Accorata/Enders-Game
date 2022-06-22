@@ -51,10 +51,13 @@ public void addToWorld (Sphere obj) {
   world.add(obj);
 }
 
-public color darken (color c) {
-  float r = red(c);
-  float g = green(c);
-  float b = blue(c);
+public color darken (color c, float x) {
+  float r = red(c)-x;
+  if (r < 0) r = 0;
+  float g = green(c)-x;
+  if (g < 0) g = 0;
+  float b = blue(c)-x;
+  if (b < 0) b = 0;
   return color(r, g, b);
 }
 
