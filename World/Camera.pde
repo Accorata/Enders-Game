@@ -1,5 +1,5 @@
 public class Camera {
-  private ArrayList<Triangle> Triangles = new ArrayList<Triangle>();
+  private ArrayList<Triangle> triangles = new ArrayList<Triangle>();
   private PVector pos;
   private PVector vel;
   final float sight = 300;
@@ -13,13 +13,17 @@ public class Camera {
   }
 
   public void display() {
-    for (Triangle t : Triangles) {
+    triangles = new ArrayList<Triangle>();
+    for (Sphere s : world) {
+      s.addToCamera(cam);
+    }
+    for (Triangle t : triangles) {
       t.updateClose();
     }
-    Collections.sort(Triangles);
+    Collections.sort(triangles);
     strokeWeight(1);
     //noStroke();
-    for (Triangle t : Triangles) {
+    for (Triangle t : triangles) {
       projTri(t);
     }
     for (Tether t : tethers) {
@@ -55,7 +59,7 @@ public class Camera {
     return ans;
   }
   public void addTriangle (Triangle a) {
-    Triangles.add(a);
+    triangles.add(a);
   }
   public void rotateX (float deg) {
     viewY = rotateOn(viewY, viewX, deg);
