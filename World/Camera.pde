@@ -41,7 +41,6 @@ public class Camera {
       }
     }
   }
-
   private boolean projTri (Triangle t) {
     ArrayList<PVector> points = new ArrayList<PVector>();
     for (PVector point : t.getPoints()) {
@@ -67,6 +66,19 @@ public class Camera {
     ans.x = (sight * -rotatedX/rotatedZ)+width/2;
     ans.y = (sight * -rotatedY/rotatedZ)+height/2;
     return ans;
+  }
+  public void displayUI() {
+    strokeWeight(2);
+    stroke(0);
+    line(width/2-20, height/2, width/2+20, height/2);
+    line(width/2, height/2-20, width/2, height/2+20);
+    noFill();
+    circle(width/2, height/2, 700);
+    Sphere closest = cam.checkNear();
+    //closest.getNormal(cam.pos);
+    near = (closest != null);
+    fill(0);
+    text(""+near, 100, 100);
   }
   public void addTriangle (Triangle a) {
     triangles.add(a);
@@ -123,13 +135,13 @@ public class Camera {
       }
     }
   }
-  public boolean checkNear () {
+  public Sphere checkNear () {
     for (Sphere s : world) {
       if (s.isWithin(pos, 20)) {
-        return true;
+        return s;
       }
     }
-    return false;
+    return null;
   }
   public boolean attemptGrab () {
     boolean grabbed = false;

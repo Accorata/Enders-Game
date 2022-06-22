@@ -30,14 +30,8 @@ void setup () {
 void draw () {
   background(255);
   cam.display();
-  strokeWeight(2);
-  stroke(0);
-  line(width/2-20, height/2, width/2+20, height/2);
-  line(width/2, height/2-20, width/2, height/2+20);
+  cam.displayUI();
   //showVisualization();
-  near = cam.checkNear();
-  fill(0);
-  text(""+near, 100, 100);
   boolean push = near;
   if (push) dir.mult(10);
   //if (dir.mag() < speed*2) dir.div(10);
