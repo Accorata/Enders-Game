@@ -74,8 +74,11 @@ public class Tether {
       }
     }
   }
-  public ArrayList<Triangle> getTriangles () {
-    return triangles;
+  public void addToCamera (Camera c) {
+    for (Triangle t : triangles) {
+      t.updateClose();
+      c.addTriangle(t);
+    }
   }
   public PVector force(PVector loc) {
     PVector force = pos.copy().sub(loc);

@@ -17,8 +17,8 @@ public class Camera {
     for (Sphere s : world) {
       s.addToCamera(cam);
     }
-    for (Triangle t : triangles) {
-      t.updateClose();
+    for (Tether t : tethers) {
+      t.addToCamera(cam);
     }
     Collections.sort(triangles);
     strokeWeight(1);

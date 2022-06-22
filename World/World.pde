@@ -88,9 +88,6 @@ void keyPressed() {
   case 't':
     Tether teth = new Tether(cam.pos.copy(), cam.viewZ.copy().mult(2));
     tethers.add(teth);
-    for (Triangle t : teth.getTriangles()) {
-      cam.addTriangle(t);
-    }
     break;
   case 'r':
     tethers = new ArrayList<Tether>();

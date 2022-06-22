@@ -24,12 +24,9 @@ public class Sphere {
       t.updateClose();
     }
     Collections.sort(triangles);
-    for (int i = (int) (triangles.size()/1.5); i<triangles.size(); i++){
+    for (int i = (int) (triangles.size()/2); i<triangles.size(); i++){
       c.addTriangle(triangles.get(i));
     }
-    //for (Triangle t : triangles) {
-    //  c.addTriangle(t);
-    //}
   }
   private ArrayList<PVector> calcPoints (PVector pos, float yRadius, float xzRadius, int angle, int rows) {
     ArrayList<PVector> points = new ArrayList<PVector>();
