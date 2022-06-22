@@ -64,15 +64,15 @@ public class Camera {
   }
   public void rotateX (float deg) {
     xRotate += deg;
-    rotateAxisOnY(viewX, -yRotate);
-    rotateAxisOnY(viewY, -yRotate);
-    rotateAxisOnY(viewZ, -yRotate);
+    //rotateAxisOnY(viewX, -yRotate);
+    //rotateAxisOnY(viewY, -yRotate);
+    //rotateAxisOnY(viewZ, -yRotate);
     rotateAxisOnX(viewX, deg);
     rotateAxisOnX(viewY, deg);
     rotateAxisOnX(viewZ, deg);
-    rotateAxisOnY(viewX, yRotate);
-    rotateAxisOnY(viewY, yRotate);
-    rotateAxisOnY(viewZ, yRotate);
+    //rotateAxisOnY(viewX, yRotate);
+    //rotateAxisOnY(viewY, yRotate);
+    //rotateAxisOnY(viewZ, yRotate);
     //println(viewY);
   }
   public void rotateY (float deg) {
@@ -80,9 +80,12 @@ public class Camera {
     //rotateAxisOnX(viewX, -xRotate);
     //rotateAxisOnX(viewY, -xRotate);
     //rotateAxisOnX(viewZ, -xRotate);
-    rotateAxisOnY(viewX, deg);
-    rotateAxisOnY(viewY, deg);
-    rotateAxisOnY(viewZ, deg);
+    viewX = rotateOn(viewX, new PVector(0,1,0), deg);
+    viewY = rotateOn(viewY, new PVector(0,1,0), deg);
+    viewZ = rotateOn(viewZ, new PVector(0,1,0), deg);
+    //rotateAxisOnY(viewX, deg);
+    //rotateAxisOnY(viewY, deg);
+    //rotateAxisOnY(viewZ, deg);
     //rotateAxisOnX(viewX, xRotate);
     //rotateAxisOnX(viewY, xRotate);
     //rotateAxisOnX(viewZ, xRotate);
