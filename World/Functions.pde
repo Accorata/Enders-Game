@@ -52,9 +52,9 @@ public void addToWorld (Sphere obj) {
 }
 
 public color darken (color c) {
-  int b = 255;
-  int g = 255<<8;
-  int r = 255<<16;
+  float r = red(c);
+  float g = green(c);
+  float b = blue(c);
   return color(r, g, b);
 }
 
