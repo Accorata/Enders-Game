@@ -77,15 +77,14 @@ public class Camera {
     Sphere closest = cam.checkNear();
     near = (closest != null);
     if (near) {
-      PVector norm = closest.getNormal(cam.pos);
-      PVector translated = projPoint(norm.mult(-1));
+      PVector norm = closest.center;
+      PVector translated = projPoint(norm);
       //new PVector(0, 0, 0);
       //translated.add(viewX.copy().mult(norm.x));
       //translated.add(viewY.copy().mult(norm.y));
       //translated.add(viewZ.copy().mult(norm.z));
       //if (translated
       if (translated != null) {
-        translated.setMag(350);
         line(width/2, height/2, translated.x, translated.y);
       }
     }
