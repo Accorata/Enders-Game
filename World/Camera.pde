@@ -137,6 +137,9 @@ public class Camera {
     vel.add(dir.setMag(speed));
   }
   public void move () {
+    move(vel);
+  }
+  public void move (PVector dir) {
     if (grab) {
       if (vel.mag() < 0.2) {
         vel = new PVector(0, 0, 0);
@@ -144,9 +147,6 @@ public class Camera {
         vel.div(1.1);
       }
     }
-    move(vel);
-  }
-  public void move (PVector dir) {
     pos.add(dir);
     for (Sphere s : world) {
       if (s.isWithin(pos, 0)) {

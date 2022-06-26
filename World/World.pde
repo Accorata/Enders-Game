@@ -1,6 +1,6 @@
 import java.util.Collections;
 public Camera cam;
-public Camera drone;
+public Drone drone;
 public ArrayList<Sphere> world = new ArrayList<Sphere>(); 
 public ArrayList<Tether> tethers = new ArrayList<Tether>();
 public ArrayList<Triangle> triangles = new ArrayList<Triangle>();
@@ -40,7 +40,6 @@ void draw () {
     stroke(0);
     rect(450, 300, 200, 200);
     drone.display(450, 300, 200, 200);
-    println(drone.pos);
   }
   //showVisualization();
   boolean push = near;
@@ -119,7 +118,7 @@ void keyPressed() {
     cam.vel = new PVector(0, 0, 0);
     break;
   case 'y':
-    drone = new Camera(cam.pos.copy(), cam.vel.copy());
+    drone = new Drone(cam.pos.copy(), dir.copy());
     break;
   }
 }
