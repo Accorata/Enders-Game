@@ -26,12 +26,13 @@ public class Camera {
   public void display(float x, float y, float w, float h) {
     screen.endDraw();
     noFill();
-    strokeWeight(10);
+    strokeWeight(4);
     stroke(0);
-    rect(x, y, w, h);
+    rect(x-2, y-2, w+4, h+4);
     image(screen, x, y, w, h);
     screen.beginDraw();
-    screen.background(255);
+    //screen.background(0, 0);
+    screen.background(255, 50);
   }
   public void displayWorld() {
     triangles = new ArrayList<Triangle>();
