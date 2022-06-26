@@ -1,5 +1,4 @@
 public class Camera {
-  private ArrayList<Triangle> triangles = new ArrayList<Triangle>();
   private PVector pos;
   private PVector vel;
   final float sight = 300;
@@ -13,7 +12,6 @@ public class Camera {
   }
 
   public void display() {
-    triangles = new ArrayList<Triangle>();
     for (Sphere s : world) {
       s.addToCamera(cam);
     }
