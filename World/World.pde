@@ -1,5 +1,6 @@
 import java.util.Collections;
 public Camera cam;
+public Camera drone;
 public ArrayList<Sphere> world = new ArrayList<Sphere>(); 
 public ArrayList<Tether> tethers = new ArrayList<Tether>();
 public ArrayList<Triangle> triangles = new ArrayList<Triangle>();
@@ -11,7 +12,9 @@ public boolean near = false;
 
 void setup () {
   size(800, 800);
-  cam = new Camera(width, height);
+  cam = new Camera();
+  drone = new Camera();
+  drone.vel.z = 1;
   //tethers.add(new Tether(cam.pos.copy()));
   //Sphere outside = new Sphere (new PVector(0, 0, 0), 10000, color(255), 20, 20);
   Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 10, 20);
@@ -31,7 +34,13 @@ void draw () {
   background(255);
   cam.displayWorld();
   cam.displayUI();
-  cam.display();
+  drone.displayWorld();
+  cam.display(0, 0, width, height);
+  noFill();
+  strokeWeight(10);
+  stroke(0);
+  rect(450, 300, 200, 200);
+  drone.display(450, 300, 200, 200);
   //showVisualization();
   boolean push = near;
   if (push) dir.mult(10);
@@ -39,6 +48,7 @@ void draw () {
   if (!test) {
     cam.boost(dir);
     cam.move();
+    drone.move();
   } else {
     cam.move(dir);
   }

@@ -7,6 +7,9 @@ public class Camera {
   private PVector viewZ = new PVector(0, 0, 1);
   private PGraphics screen;
 
+  public Camera() {
+    this(width, height);
+  }
   public Camera(int x, int y) {
     this.pos = new PVector(0, 0, 0);
     this.vel = new PVector(0, 0, 0);
@@ -14,11 +17,11 @@ public class Camera {
     screen.beginDraw();
   }
 
-  public void display() {
+  public void display(float x, float y, float w, float h) {
     screen.endDraw();
-    image(screen, 0, 0);
-    screen.background(255);
+    image(screen, x, y, w, h);
     screen.beginDraw();
+    screen.background(255);
   }
   public void displayWorld() {
     triangles = new ArrayList<Triangle>();
