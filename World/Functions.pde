@@ -66,7 +66,7 @@ public float sigmoid (float x) {
 }
 
 public Triangle copyOfTri(Triangle t) {
-  return new Triangle(t.points, t.clr, t.center, t.light);
+  return new Triangle(t.points, t.clr, t.center);
 }
 
 PVector project(PVector u, PVector v) {

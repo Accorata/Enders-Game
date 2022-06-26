@@ -16,11 +16,10 @@ public class Triangle implements Comparable<Triangle> {
     this.center = calcCenter();
     this.light = light_;
   }
-  public Triangle (PVector[] points_, color clr_, PVector center_, float light_) {
+  public Triangle (PVector[] points_, color clr_, PVector center_) {
     this.points = points_;
     this.clr = clr_;
     this.center = center_;
-    this.light = light_;
   }
 
   private PVector calcCenter () {

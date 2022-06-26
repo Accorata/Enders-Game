@@ -1,4 +1,4 @@
-public class Tether {
+public class Tether implements Object {
   private float len = 100;
   private float displacement;
   private float springConst = 0.001;
@@ -76,7 +76,8 @@ public class Tether {
     }
   }
   public void addToCamera (Camera c) {
-    for (Triangle t : triangles) {
+    for (Triangle tri : triangles) {
+      Triangle t = copyOfTri(tri);
       t.updateClose(c);
       c.addTriangle(t);
     }
