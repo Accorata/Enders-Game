@@ -13,8 +13,6 @@ public boolean near = false;
 void setup () {
   size(800, 800);
   cam = new Camera();
-  drone = new Camera();
-  drone.vel.z = 1;
   //tethers.add(new Tether(cam.pos.copy()));
   //Sphere outside = new Sphere (new PVector(0, 0, 0), 10000, color(255), 20, 20);
   Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 10, 20);
@@ -23,7 +21,7 @@ void setup () {
   addToWorld(s);
   //println(triangles.size());
   addToWorld(s2);
-  
+
   //cam.addTriangle(one);
   if (test) {
     speed *=1000;
@@ -34,13 +32,16 @@ void draw () {
   background(255);
   cam.displayWorld();
   cam.displayUI();
-  drone.displayWorld();
   cam.display(0, 0, width, height);
-  noFill();
-  strokeWeight(10);
-  stroke(0);
-  rect(450, 300, 200, 200);
-  drone.display(450, 300, 200, 200);
+  if (drone != null) {
+    drone.displayWorld();
+    noFill();
+    strokeWeight(10);
+    stroke(0);
+    rect(450, 300, 200, 200);
+    drone.display(450, 300, 200, 200);
+    println(drone.pos);
+  }
   //showVisualization();
   boolean push = near;
   if (push) dir.mult(10);
@@ -48,7 +49,9 @@ void draw () {
   if (!test) {
     cam.boost(dir);
     cam.move();
-    drone.move();
+    if (drone !=null) {
+      drone.move();
+    }
   } else {
     cam.move(dir);
   }
@@ -114,6 +117,9 @@ void keyPressed() {
     break;
   case 'v':
     cam.vel = new PVector(0, 0, 0);
+    break;
+  case 'y':
+    drone = new Camera(cam.pos.copy(), cam.vel.copy());
     break;
   }
 }

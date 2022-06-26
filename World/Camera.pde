@@ -16,6 +16,11 @@ public class Camera {
     this.screen = createGraphics(x, y);
     screen.beginDraw();
   }
+  public Camera(PVector pos_, PVector vel_) {
+    this(width, height);
+    this.pos = pos_;
+    this.vel = vel_;
+  }
 
   public void display(float x, float y, float w, float h) {
     screen.endDraw();
