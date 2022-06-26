@@ -5,6 +5,7 @@ public class Camera {
   private PVector viewX = new PVector(1, 0, 0);
   private PVector viewY = new PVector(0, 1, 0);
   private PVector viewZ = new PVector(0, 0, 1);
+  //private ArrayList<Triangle> triangles = new ArrayList<Triangle>();
 
   public Camera() {
     this.pos = new PVector(0, 0, 0);
