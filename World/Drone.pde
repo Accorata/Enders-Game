@@ -5,12 +5,27 @@ public class Drone extends Camera {
     super.viewY = cam.viewY;
     super.viewZ = cam.viewZ;
   }
-  
+
   @Override
-  public void move () {
+    public void displayTethers() {
+    super.screen.stroke(0);
+    PVector two = super.projPoint(cam.pos);
+    if (two != null) {
+      for (Tether t : tethers) {
+        PVector one = super.projPoint(t.getPos());
+        if (one != null) {
+          super.screen.strokeWeight(sigmoid(t.displacement/-4)*1.5);
+          super.screen.line(one.x, one.y, two.x, two.y);
+        }
+      }
+      super.screen.fill(0);
+      super.screen.circle(two.x, two.y, 10);
+    }
+  }
+  @Override
+    public void move () {
     move(super.vel);
   }
-  
   @Override
     public void move (PVector dir) {
     super.pos.add(dir);
