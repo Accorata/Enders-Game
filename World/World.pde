@@ -118,7 +118,7 @@ void keyPressed() {
     cam.vel = new PVector(0, 0, 0);
     break;
   case 'y':
-    drone = new Drone(cam.pos.copy(), dir.copy());
+    drone = new Drone(cam.pos.copy(), cam.viewZ.copy().mult(2));
     break;
   }
 }

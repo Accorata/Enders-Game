@@ -1,6 +1,9 @@
 public class Drone extends Camera {
   public Drone (PVector pos_, PVector vel_) {
     super(pos_, vel_);
+    super.viewX = cam.viewX;
+    super.viewY = cam.viewY;
+    super.viewZ = cam.viewZ;
   }
   
   @Override

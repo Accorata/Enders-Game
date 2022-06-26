@@ -50,7 +50,7 @@ public class Camera {
     }
     screen.stroke(0);
     for (Tether t : tethers) {
-      PVector one = projPoint(t.getPos());
+      PVector one = projPointCam(t.getPos());
       if (one != null) {
         screen.strokeWeight(sigmoid(t.displacement/-4)*1.5);
         screen.line(one.x, one.y, width-100, height-100);
@@ -74,6 +74,17 @@ public class Camera {
   }
   private PVector projPoint(PVector point) {
     PVector movedPoint = point.copy().sub(pos);
+    float rotatedZ = movedPoint.dot(viewZ.copy().normalize());
+    if (rotatedZ < 0) return null;
+    float rotatedX = movedPoint.dot(viewX.copy().normalize());
+    float rotatedY = movedPoint.dot(viewY.copy().normalize());
+    PVector ans = new PVector (0, 0);
+    ans.x = (sight * -rotatedX/rotatedZ)+width/2;
+    ans.y = (sight * -rotatedY/rotatedZ)+height/2;
+    return ans;
+  }
+  private PVector projPointCam(PVector point) {
+    PVector movedPoint = point.copy().sub(cam.pos);
     float rotatedZ = movedPoint.dot(viewZ.copy().normalize());
     if (rotatedZ < 0) return null;
     float rotatedX = movedPoint.dot(viewX.copy().normalize());
