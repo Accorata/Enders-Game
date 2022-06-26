@@ -77,7 +77,7 @@ public class Tether {
   }
   public void addToCamera (Camera c) {
     for (Triangle t : triangles) {
-      t.updateClose();
+      t.updateClose(c);
       c.addTriangle(t);
     }
   }

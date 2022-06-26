@@ -21,7 +21,7 @@ public class Sphere {
   }
   public void addToCamera (Camera c) {
     for (Triangle t : triangles) {
-      t.updateClose();
+      t.updateClose(c);
     }
     Collections.sort(triangles);
     for (int i = (int) (triangles.size()/2); i<triangles.size(); i++){

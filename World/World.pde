@@ -3,7 +3,6 @@ public Camera cam;
 public Drone drone;
 public ArrayList<Sphere> world = new ArrayList<Sphere>(); 
 public ArrayList<Tether> tethers = new ArrayList<Tether>();
-public ArrayList<Triangle> triangles = new ArrayList<Triangle>();
 PVector dir = new PVector(0, 0, 0);
 float speed = 0.01;
 final boolean test = false;
@@ -58,7 +57,7 @@ void draw () {
   for (Tether t : tethers) {
     t.update();
   }
-  println(frameRate+"   "+triangles.size());
+  println(frameRate);//+"   "+triangles.size());
 }
 
 void keyPressed() {

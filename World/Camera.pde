@@ -1,4 +1,5 @@
 public class Camera {
+  private ArrayList<Triangle> triangles = new ArrayList<Triangle>();
   private PVector pos;
   private PVector vel;
   final float sight = 300;
@@ -31,10 +32,10 @@ public class Camera {
   public void displayWorld() {
     triangles = new ArrayList<Triangle>();
     for (Sphere s : world) {
-      s.addToCamera(cam);
+      s.addToCamera(this);
     }
     for (Tether t : tethers) {
-      t.addToCamera(cam);
+      t.addToCamera(this);
     }
     Collections.sort(triangles);
     strokeWeight(1);
