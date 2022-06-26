@@ -15,6 +15,12 @@ public class Camera {
   }
 
   public void display() {
+    screen.endDraw();
+    image(screen, 0, 0);
+    screen.background(255);
+    screen.beginDraw();
+  }
+  public void displayWorld() {
     triangles = new ArrayList<Triangle>();
     for (Sphere s : world) {
       s.addToCamera(cam);

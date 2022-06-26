@@ -29,8 +29,9 @@ void setup () {
 
 void draw () {
   background(255);
-  cam.display();
+  cam.displayWorld();
   cam.displayUI();
+  cam.display();
   //showVisualization();
   boolean push = near;
   if (push) dir.mult(10);
