@@ -76,10 +76,9 @@ public class Tether implements Object {
     }
   }
   public void addToCamera (Camera c) {
-    for (Triangle tri : triangles) {
-      Triangle t = copyOfTri(tri);
+    for (Triangle t : triangles) {
       t.updateClose(c);
-      c.addTriangle(t);
+      c.addTriangle(copyOfTri(t));
     }
   }
   public PVector force(PVector loc) {

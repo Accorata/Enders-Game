@@ -20,11 +20,12 @@ public class Sphere implements Object {
     return center.copy().add(getNormal(loc).setMag(radius+0.01));
   }
   public void addToCamera (Camera c) {
+    for (Triangle t : triangles) {
+      t.updateClose(c);
+    }
     Collections.sort(triangles);
     for (int i = (int) (triangles.size()/2); i<triangles.size(); i++){
-      Triangle t = copyOfTri(triangles.get(i));
-      t.updateClose(c);
-      c.addTriangle(t);
+      c.addTriangle(copyOfTri(triangles.get(i)));
     }
   }
   private ArrayList<PVector> calcPoints (PVector pos, float yRadius, float xzRadius, int angle, int rows) {
