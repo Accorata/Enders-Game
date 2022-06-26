@@ -1,5 +1,5 @@
 import java.util.Collections;
-public Camera cam = new Camera();
+public Camera cam;
 public ArrayList<Sphere> world = new ArrayList<Sphere>(); 
 public ArrayList<Tether> tethers = new ArrayList<Tether>();
 public ArrayList<Triangle> triangles = new ArrayList<Triangle>();
@@ -10,6 +10,8 @@ public boolean grab = false;
 public boolean near = false;
 
 void setup () {
+  size(800, 800);
+  cam = new Camera(width, height);
   //tethers.add(new Tether(cam.pos.copy()));
   //Sphere outside = new Sphere (new PVector(0, 0, 0), 10000, color(255), 20, 20);
   Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 10, 20);
@@ -18,7 +20,7 @@ void setup () {
   addToWorld(s);
   //println(triangles.size());
   addToWorld(s2);
-  size(800, 800);
+  
   //cam.addTriangle(one);
   if (test) {
     speed *=1000;

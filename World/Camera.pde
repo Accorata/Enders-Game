@@ -5,11 +5,13 @@ public class Camera {
   private PVector viewX = new PVector(1, 0, 0);
   private PVector viewY = new PVector(0, 1, 0);
   private PVector viewZ = new PVector(0, 0, 1);
-  //private ArrayList<Triangle> triangles = new ArrayList<Triangle>();
+  private PGraphics screen;
 
-  public Camera() {
+  public Camera(int x, int y) {
     this.pos = new PVector(0, 0, 0);
     this.vel = new PVector(0, 0, 0);
+    this.screen = createGraphics(x, y);
+    screen.beginDraw();
   }
 
   public void display() {
@@ -32,12 +34,12 @@ public class Camera {
       triangles.get(i).light = 100-triangles.get(i).close/2;
       i--;
     }
-    stroke(0);
+    screen.stroke(0);
     for (Tether t : tethers) {
       PVector one = projPoint(t.getPos());
       if (one != null) {
-        strokeWeight(sigmoid(t.displacement/-4)*1.5);
-        line(one.x, one.y, width-100, height-100);
+        screen.strokeWeight(sigmoid(t.displacement/-4)*1.5);
+        screen.line(one.x, one.y, width-100, height-100);
       }
     }
   }
@@ -51,9 +53,9 @@ public class Camera {
       points.add(projected);
     }
     color c = darken(t.clr, 100-t.light);
-    fill(c);
-    stroke(c);
-    triangle(points.get(0).x, points.get(0).y, points.get(1).x, points.get(1).y, points.get(2).x, points.get(2).y);
+    screen.fill(c);
+    screen.stroke(c);
+    screen.triangle(points.get(0).x, points.get(0).y, points.get(1).x, points.get(1).y, points.get(2).x, points.get(2).y);
     return true;
   }
   private PVector projPoint(PVector point) {
@@ -68,12 +70,12 @@ public class Camera {
     return ans;
   }
   public void displayUI() {
-    strokeWeight(2);
-    stroke(0);
-    line(width/2-20, height/2, width/2+20, height/2);
-    line(width/2, height/2-20, width/2, height/2+20);
-    noFill();
-    circle(width/2, height/2, 700);
+    screen.strokeWeight(2);
+    screen.stroke(0);
+    screen.line(width/2-20, height/2, width/2+20, height/2);
+    screen.line(width/2, height/2-20, width/2, height/2+20);
+    screen.noFill();
+    screen.circle(width/2, height/2, 700);
     Sphere closest = cam.checkNear();
     near = (closest != null);
     if (near) {
@@ -85,11 +87,11 @@ public class Camera {
       //translated.add(viewZ.copy().mult(norm.z));
       //if (translated
       if (translated != null) {
-        line(width/2, height/2, translated.x, translated.y);
+        screen.line(width/2, height/2, translated.x, translated.y);
       }
     }
-    fill(0);
-    text(""+near, 100, 100);
+    screen.fill(0);
+    screen.text(""+near, 100, 100);
   }
   public void addTriangle (Triangle a) {
     triangles.add(a);
