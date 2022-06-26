@@ -25,6 +25,10 @@ public class Camera {
 
   public void display(float x, float y, float w, float h) {
     screen.endDraw();
+    noFill();
+    strokeWeight(10);
+    stroke(0);
+    rect(x, y, w, h);
     image(screen, x, y, w, h);
     screen.beginDraw();
     screen.background(255);

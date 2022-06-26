@@ -34,10 +34,6 @@ void draw () {
   cam.display(0, 0, width, height);
   if (drone != null) {
     drone.displayWorld();
-    noFill();
-    strokeWeight(10);
-    stroke(0);
-    rect(450, 300, 200, 200);
     drone.display(450, 300, 200, 200);
   }
   //showVisualization();
