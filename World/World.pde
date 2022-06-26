@@ -16,6 +16,7 @@ void setup () {
   Sphere s2 = new Sphere (new PVector(-200, 0, 600), 100, color(200, 0, 0), 10, 20);
   //outside.addToCamera(cam);
   addToWorld(s);
+  //println(triangles.size());
   addToWorld(s2);
   size(800, 800);
   //cam.addTriangle(one);
@@ -42,7 +43,7 @@ void draw () {
   for (Tether t : tethers) {
     t.update();
   }
-  println(frameRate);
+  println(frameRate+"   "+triangles.size());
 }
 
 void keyPressed() {

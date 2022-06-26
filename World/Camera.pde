@@ -13,6 +13,7 @@ public class Camera {
   }
 
   public void display() {
+    triangles = new ArrayList<Triangle>();
     for (Sphere s : world) {
       s.addToCamera(cam);
     }
