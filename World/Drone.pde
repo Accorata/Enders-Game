@@ -7,19 +7,7 @@ public class Drone extends Camera {
   }
 
   @Override
-    public void displayWorld() {
-    super.triangles = new ArrayList<Triangle>();
-    for (Sphere s : world) {
-      s.addToCamera(this);
-    }
-    for (Tether t : tethers) {
-      t.addToCamera(this);
-    }
-    Collections.sort(super.triangles);
-    strokeWeight(1);
-    for (Triangle t : super.triangles) {
-      super.projTri(t);
-    }
+    public void displayTethers() {
     super.screen.stroke(0);
     for (Tether t : tethers) {
       PVector one = super.projPoint(t.getPos());

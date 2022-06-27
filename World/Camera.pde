@@ -41,10 +41,14 @@ public class Camera {
     for (Tether t : tethers) {
       t.addToCamera(this);
     }
+    Collections.sort(triangles);
     screen.strokeWeight(1);
     for (Triangle t : triangles) {
       projTri(t);
     }
+    displayTethers();
+  }
+  public void displayTethers(){
     screen.stroke(0);
     for (Tether t : tethers) {
       PVector one = projPoint(t.getPos());
