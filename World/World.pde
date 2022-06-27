@@ -83,6 +83,12 @@ void keyPressed() {
   case 'd':
     dir.x = -speed;
     break;
+  case 'z':
+    dir.y = speed;
+    break;
+  case 'x':
+    dir.y = -speed;
+    break;
   case 'u':
     cam.rotateZ(10);
     break;
@@ -128,6 +134,12 @@ void keyReleased () {
     break;
   case 'd':
     dir.x = 0;
+    break;
+  case 'z':
+    dir.y = 0;
+    break;
+  case 'x':
+    dir.y = 0;
     break;
   case 'g':
     grab = false;
