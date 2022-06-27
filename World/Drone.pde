@@ -55,4 +55,9 @@ public class Drone extends Camera implements Object {
       }
     }
   }
+  @Override
+    public void display(float x, float y, float w, float h) {
+    //super.screen.filter(BLUR, dist(super.pos, cam.pos)/x);
+    super.display(x, y, w, h);
+  }
 }
