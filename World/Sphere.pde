@@ -10,6 +10,18 @@ public class Sphere implements Object {
     this.triangles = calcTriangles(ps, angle, rows, clr);
   }
 
+  public void addToCamera (Camera c) {
+    for (Triangle t : triangles) {
+      t.updateClose(c);
+    }
+    Collections.sort(triangles);
+    for (int i = (int) (triangles.size()/2); i<triangles.size(); i++) {
+      c.addTriangle(triangles.get(i));
+    }
+  }
+  public ArrayList<Triangle> getTriangles () {
+    return triangles;
+  }
   public boolean isWithin (PVector loc, float flex) {
     return dist(loc, center) <= radius+flex;
   }
@@ -18,15 +30,6 @@ public class Sphere implements Object {
   }
   public PVector displace (PVector loc) {
     return center.copy().add(getNormal(loc).setMag(radius+0.01));
-  }
-  public void addToCamera (Camera c) {
-    for (Triangle t : triangles) {
-      t.updateClose(c);
-    }
-    Collections.sort(triangles);
-    for (int i = (int) (triangles.size()/2); i<triangles.size(); i++){
-      c.addTriangle(triangles.get(i));
-    }
   }
   private ArrayList<PVector> calcPoints (PVector pos, float yRadius, float xzRadius, int angle, int rows) {
     ArrayList<PVector> points = new ArrayList<PVector>();

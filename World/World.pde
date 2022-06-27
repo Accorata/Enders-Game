@@ -29,12 +29,13 @@ void setup () {
 
 void draw () {
   background(255);
+  setLight();
   cam.displayWorld();
   cam.displayUI();
   cam.display(0, 0, width, height);
   if (drone != null) {
     drone.displayWorld();
-    drone.display(450, 300, 200, 200);
+    drone.display(450, height/2-150, 300, 300);
   }
   //showVisualization();
   boolean push = near;

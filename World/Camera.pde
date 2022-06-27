@@ -41,13 +41,7 @@ public class Camera {
     for (Tether t : tethers) {
       t.addToCamera(this);
     }
-    Collections.sort(triangles);
-    strokeWeight(1);
-    int i = triangles.size()-1;
-    while (i >= 0 && triangles.get(i).close < 200) {
-      triangles.get(i).light = 100-triangles.get(i).close/2;
-      i--;
-    }
+    screen.strokeWeight(1);
     for (Triangle t : triangles) {
       projTri(t);
     }

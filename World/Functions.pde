@@ -65,6 +65,24 @@ public float sigmoid (float x) {
   return 1/(1+exp(-x));
 }
 
+public void setLight () {
+  ArrayList<Triangle> triangles = new ArrayList<Triangle>(); 
+  for (Object o : world) {
+    for (Triangle t : o.getTriangles()) {
+      triangles.add(t);
+    }
+  }
+  for (Triangle t : triangles) {
+    t.light = 0;
+    t.updateClose(cam);
+  }
+  Collections.sort(triangles);
+  int i = triangles.size()-1;
+  while (i >= 0 && triangles.get(i).close < 200) {
+    triangles.get(i).light = 100-triangles.get(i).close/2;
+    i--;
+  }
+}
 
 public Triangle copyOfTri(Triangle t) {
   return new Triangle(t.points, t.clr, t.center, t.close);

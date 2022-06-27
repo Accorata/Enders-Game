@@ -59,6 +59,15 @@ public class Tether implements Object {
     ts.add(new Triangle(points.get(2), points.get(13), points.get(15), clr));
     return ts;
   }
+  public void addToCamera (Camera c) {
+    for (Triangle t : triangles) {
+      t.updateClose(c);
+      c.addTriangle(t);
+    }
+  }
+  public ArrayList<Triangle> getTriangles () {
+    return triangles;
+  }
   public void update () {
     if (!attached) {
       pos.add(dir);
@@ -73,12 +82,6 @@ public class Tether implements Object {
           if (len < 200) len = 200;
         }
       }
-    }
-  }
-  public void addToCamera (Camera c) {
-    for (Triangle t : triangles) {
-      t.updateClose(c);
-      c.addTriangle(t);
     }
   }
   public PVector force(PVector loc) {
