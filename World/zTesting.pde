@@ -58,3 +58,21 @@ void showVisualization () {
   //fin.y = fromScreen * loc.y / (loc.z + fromScreen)+width/2;
   //println(fin.x);
 }
+
+void recalcInverses() {
+  PVector[] inv = inverse(xAxis, sight);
+  xAxisInv = inv[0];
+  sightInv = inv[1];
+}
+PVector[] inverse(PVector one, PVector two) {
+  PVector[] ans = new PVector[3];
+  for (int i = 0; i<2; i++) {
+    ans[i] = new PVector(0, 0, 0);
+  }
+  float inverseDet = 1;//(one.x*two.y - one.x*two.y);
+  ans[0].x = two.y*inverseDet;
+  ans[0].y = -one.y*inverseDet;
+  ans[1].x = -two.x*inverseDet;
+  ans[1].y = one.x*inverseDet;
+  return ans;
+}

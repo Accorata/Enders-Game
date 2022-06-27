@@ -147,11 +147,11 @@ public class Camera {
     }
     pos.add(dir);
     for (Sphere s : spheres) {
-        if (s.isWithin(pos, 0)) {
-          pos = s.displace(pos);
-          PVector normal = s.getNormal(pos).normalize();
-          vel.div(2);
-          vel.add(project(vel, normal).setMag(vel.dot(normal)*2));
+      if (s.isWithin(pos, 0)) {
+        pos = s.displace(pos);
+        PVector normal = s.getNormal(pos).normalize();
+        vel.div(2);
+        vel.add(project(vel, normal).setMag(vel.dot(normal)*2));
       }
     }
     for (Tether t : tethers) {
