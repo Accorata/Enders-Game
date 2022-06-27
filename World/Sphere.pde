@@ -25,7 +25,7 @@ public class Sphere implements Object {
     }
     Collections.sort(triangles);
     for (int i = (int) (triangles.size()/2); i<triangles.size(); i++){
-      c.addTriangle(copyOfTri(triangles.get(i)));
+      c.addTriangle(triangles.get(i));
     }
   }
   private ArrayList<PVector> calcPoints (PVector pos, float yRadius, float xzRadius, int angle, int rows) {

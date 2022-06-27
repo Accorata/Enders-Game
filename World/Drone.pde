@@ -7,19 +7,26 @@ public class Drone extends Camera {
   }
 
   @Override
-    public void displayTethers() {
+    public void displayWorld() {
+    super.triangles = new ArrayList<Triangle>();
+    for (Sphere s : world) {
+      s.addToCamera(this);
+    }
+    for (Tether t : tethers) {
+      t.addToCamera(this);
+    }
+    Collections.sort(super.triangles);
+    strokeWeight(1);
+    for (Triangle t : super.triangles) {
+      super.projTri(t);
+    }
     super.screen.stroke(0);
-    PVector two = super.projPoint(cam.pos);
-    if (two != null) {
-      for (Tether t : tethers) {
-        PVector one = super.projPoint(t.getPos());
-        if (one != null) {
-          super.screen.strokeWeight(sigmoid(t.displacement/-4)*1.5);
-          super.screen.line(one.x, one.y, two.x, two.y);
-        }
+    for (Tether t : tethers) {
+      PVector one = super.projPoint(t.getPos());
+      if (one != null) {
+        super.screen.strokeWeight(sigmoid(t.displacement/-4)*1.5);
+        super.screen.line(one.x, one.y, width-100, height-100);
       }
-      super.screen.fill(0);
-      super.screen.circle(two.x, two.y, 10);
     }
   }
   @Override

@@ -31,8 +31,7 @@ public class Camera {
     rect(x-2, y-2, w+4, h+4);
     image(screen, x, y, w, h);
     screen.beginDraw();
-    //screen.background(0, 0);
-    screen.background(255, 50);
+    screen.background(255, 150);
   }
   public void displayWorld() {
     triangles = new ArrayList<Triangle>();
@@ -52,9 +51,6 @@ public class Camera {
     for (Triangle t : triangles) {
       projTri(t);
     }
-    displayTethers();
-  }
-  public void displayTethers() {
     screen.stroke(0);
     for (Tether t : tethers) {
       PVector one = projPoint(t.getPos());

@@ -65,10 +65,10 @@ public float sigmoid (float x) {
   return 1/(1+exp(-x));
 }
 
+
 public Triangle copyOfTri(Triangle t) {
   return new Triangle(t.points, t.clr, t.center, t.close);
 }
-
 PVector project(PVector u, PVector v) {
   return v.copy().mult(u.dot(v)/sq(v.mag()));
 }
