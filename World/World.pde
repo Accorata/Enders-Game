@@ -43,9 +43,6 @@ void draw () {
   if (!test) {
     cam.boost(dir);
     cam.move();
-    if (drone !=null) {
-      drone.move();
-    }
   } else {
     cam.move(dir);
   }

@@ -18,6 +18,7 @@ public class Drone extends Camera implements Object {
     return this.triangles;
   }
   public void update (){
+    drone.move();
   }
   @Override
     public void displayTethers() {
@@ -42,6 +43,9 @@ public class Drone extends Camera implements Object {
   @Override
     public void move (PVector dir) {
     super.pos.add(dir);
+    for (PVector point : points) {
+      point.add(dir);
+    }
     for (Sphere s : spheres) {
       if (s.isWithin(super.pos, 0)) {
         super.pos = s.displace(super.pos);
