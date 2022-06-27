@@ -74,7 +74,7 @@ public class Tether implements Object {
       for (PVector point : points) {
         point.add(dir);
       }
-      for (Sphere s : world) {
+      for (Sphere s : spheres) {
         if (s.isWithin(pos, 0)) {
           this.pos = s.displace(pos);
           attached = true;

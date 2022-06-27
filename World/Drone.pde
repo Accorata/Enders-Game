@@ -9,12 +9,17 @@ public class Drone extends Camera {
   @Override
     public void displayTethers() {
     super.screen.stroke(0);
-    for (Tether t : tethers) {
-      PVector one = super.projPoint(t.getPos());
-      if (one != null) {
-        super.screen.strokeWeight(sigmoid(t.displacement/-4)*1.5);
-        super.screen.line(one.x, one.y, width-100, height-100);
+    PVector playerPos = super.projPoint(cam.pos);
+    if (playerPos != null) {
+      for (Tether t : tethers) {
+        PVector one = super.projPoint(t.getPos());
+        if (one != null) {
+          super.screen.strokeWeight(sigmoid(t.displacement/-4)*1.5);
+          super.screen.line(one.x, one.y, playerPos.x, playerPos.y);
+        }
       }
+      super.screen.fill(0);
+      super.screen.circle(playerPos.x, playerPos.y, 20);
     }
   }
   @Override
@@ -24,7 +29,7 @@ public class Drone extends Camera {
   @Override
     public void move (PVector dir) {
     super.pos.add(dir);
-    for (Sphere s : world) {
+    for (Sphere s : spheres) {
       if (s.isWithin(super.pos, 0)) {
         super.pos = s.displace(super.pos);
         PVector normal = s.getNormal(super.pos).normalize();

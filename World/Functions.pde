@@ -46,9 +46,14 @@ public PVector rotateOn(PVector pv, PVector axis, float deg) {
   return ans;
 }
 
-public void addToWorld (Sphere obj) {
-  obj.addToCamera(cam);
-  world.add(obj);
+public void addToWorld (Sphere s) {
+  world.add(s);
+  spheres.add(s);
+}
+
+public void addToWorld (Tether t) {
+  world.add(t);
+  tethers.add(t);
 }
 
 public color darken (color c, float x) {

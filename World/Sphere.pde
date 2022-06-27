@@ -22,6 +22,8 @@ public class Sphere implements Object {
   public ArrayList<Triangle> getTriangles () {
     return triangles;
   }
+  public void update () {
+  }
   public boolean isWithin (PVector loc, float flex) {
     return dist(loc, center) <= radius+flex;
   }

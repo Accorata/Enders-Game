@@ -1,7 +1,8 @@
 import java.util.Collections;
 public Camera cam;
 public Drone drone;
-public ArrayList<Sphere> world = new ArrayList<Sphere>(); 
+public ArrayList<Object> world = new ArrayList<Object>(); 
+public ArrayList<Sphere> spheres = new ArrayList<Sphere>();
 public ArrayList<Tether> tethers = new ArrayList<Tether>();
 PVector dir = new PVector(0, 0, 0);
 float speed = 0.01;
@@ -29,6 +30,9 @@ void setup () {
 
 void draw () {
   background(255);
+  for (Object o : world) {
+    o.update();
+  }
   setLight();
   cam.displayWorld();
   cam.displayUI();
@@ -51,9 +55,6 @@ void draw () {
     cam.move(dir);
   }
   if (push) dir.div(10);
-  for (Tether t : tethers) {
-    t.update();
-  }
   println(frameRate);//+"   "+triangles.size());
 }
 
@@ -98,7 +99,7 @@ void keyPressed() {
     break;
   case 't':
     Tether teth = new Tether(cam.pos.copy(), cam.viewZ.copy().mult(2));
-    tethers.add(teth);
+    addToWorld(teth);
     break;
   case 'r':
     tethers = new ArrayList<Tether>();

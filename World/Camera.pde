@@ -35,11 +35,8 @@ public class Camera {
   }
   public void displayWorld() {
     triangles = new ArrayList<Triangle>();
-    for (Sphere s : world) {
-      s.addToCamera(this);
-    }
-    for (Tether t : tethers) {
-      t.addToCamera(this);
+    for (Object o : world) {
+      o.addToCamera(this);
     }
     Collections.sort(triangles);
     screen.strokeWeight(1);
@@ -48,7 +45,7 @@ public class Camera {
     }
     displayTethers();
   }
-  public void displayTethers(){
+  public void displayTethers() {
     screen.stroke(0);
     for (Tether t : tethers) {
       PVector one = projPoint(t.getPos());
@@ -149,12 +146,12 @@ public class Camera {
       }
     }
     pos.add(dir);
-    for (Sphere s : world) {
-      if (s.isWithin(pos, 0)) {
-        pos = s.displace(pos);
-        PVector normal = s.getNormal(pos).normalize();
-        vel.div(2);
-        vel.add(project(vel, normal).setMag(vel.dot(normal)*2));
+    for (Sphere s : spheres) {
+        if (s.isWithin(pos, 0)) {
+          pos = s.displace(pos);
+          PVector normal = s.getNormal(pos).normalize();
+          vel.div(2);
+          vel.add(project(vel, normal).setMag(vel.dot(normal)*2));
       }
     }
     for (Tether t : tethers) {
@@ -164,7 +161,7 @@ public class Camera {
     }
   }
   public Sphere checkNear () {
-    for (Sphere s : world) {
+    for (Sphere s : spheres) {
       if (s.isWithin(pos, 20)) {
         return s;
       }
