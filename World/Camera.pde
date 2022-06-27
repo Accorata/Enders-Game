@@ -37,7 +37,9 @@ public class Camera extends Sphere {
   public void displayWorld() {
     triangles = new ArrayList<Triangle>();
     for (Object o : world) {
-      o.addToCamera(this);
+      if (o != this) {
+        o.addToCamera(this);
+      }
     }
     Collections.sort(triangles);
     screen.strokeWeight(1);

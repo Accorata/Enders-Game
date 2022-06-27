@@ -1,7 +1,7 @@
 public class Drone extends Camera implements Object {
   private ArrayList<PVector> points;
   private ArrayList<Triangle> triangles;
-  
+
   public Drone (PVector pos_, PVector vel_) {
     super(pos_, vel_);
     super.viewX = cam.viewX;
@@ -17,7 +17,7 @@ public class Drone extends Camera implements Object {
   public ArrayList<Triangle> getTriangles () {
     return this.triangles;
   }
-  public void update (){
+  public void update () {
     drone.move();
   }
   @Override
