@@ -66,7 +66,7 @@ public class Tether implements Object {
     }
   }
   public ArrayList<Triangle> getTriangles () {
-    return triangles;
+    return this.triangles;
   }
   public void update () {
     if (!attached) {

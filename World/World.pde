@@ -117,6 +117,7 @@ void keyPressed() {
     break;
   case 'y':
     drone = new Drone(cam.pos.copy(), cam.viewZ.copy().mult(2));
+    world.add(drone);
     break;
   }
 }

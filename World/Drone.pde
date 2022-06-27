@@ -7,7 +7,7 @@ public class Drone extends Camera implements Object {
     super.viewX = cam.viewX;
     super.viewY = cam.viewY;
     super.viewZ = cam.viewZ;
-    this.points = super.calcPoints(pos_, 20, 20, 45, 4);
+    this.points = super.calcPoints(pos_, 3, 3, 45, 4);
     this.triangles = super.calcTriangles(points, 45, 4, color(0));
   }
 
@@ -15,7 +15,7 @@ public class Drone extends Camera implements Object {
     super.addToCamera(c);
   }
   public ArrayList<Triangle> getTriangles () {
-    return triangles;
+    return this.triangles;
   }
   public void update (){
   }

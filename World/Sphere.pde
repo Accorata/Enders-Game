@@ -13,6 +13,7 @@ public class Sphere implements Object {
   }
 
   public void addToCamera (Camera c) {
+    ArrayList<Triangle> triangles = getTriangles();
     for (Triangle t : triangles) {
       t.updateClose(c);
     }
@@ -22,7 +23,7 @@ public class Sphere implements Object {
     }
   }
   public ArrayList<Triangle> getTriangles () {
-    return triangles;
+    return this.triangles;
   }
   public void update () {
   }
