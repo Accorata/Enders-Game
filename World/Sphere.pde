@@ -3,6 +3,8 @@ public class Sphere implements Object {
   private PVector center;
   private float radius;
 
+  public Sphere () {
+  }
   public Sphere(PVector pos, float radius, color clr, int angle, int rows) {
     this.center = pos;
     this.radius = radius;
@@ -33,7 +35,8 @@ public class Sphere implements Object {
   public PVector displace (PVector loc) {
     return center.copy().add(getNormal(loc).setMag(radius+0.01));
   }
-  private ArrayList<PVector> calcPoints (PVector pos, float yRadius, float xzRadius, int angle, int rows) {
+
+  public ArrayList<PVector> calcPoints (PVector pos, float yRadius, float xzRadius, int angle, int rows) {
     ArrayList<PVector> points = new ArrayList<PVector>();
     int rowAngle = 360/rows;
     points.add(new PVector(pos.x, pos.y+yRadius, pos.z));
@@ -49,7 +52,8 @@ public class Sphere implements Object {
     points.add(new PVector(pos.x, pos.y-yRadius, pos.z));
     return points;
   }
-  private ArrayList<Triangle> calcTriangles (ArrayList<PVector> points, int angle, int rows, color clr) {
+
+  public ArrayList<Triangle> calcTriangles (ArrayList<PVector> points, int angle, int rows, color clr) {
     ArrayList<Triangle> triangles = new ArrayList<Triangle>();
     triangles.add(new Triangle(points.get(0), points.get(rows), points.get(1), clr));
     for (int i = 1; i<rows; i++) {

@@ -1,11 +1,24 @@
-public class Drone extends Camera {
+public class Drone extends Camera implements Object {
+  private ArrayList<PVector> points;
+  private ArrayList<Triangle> triangles;
+  
   public Drone (PVector pos_, PVector vel_) {
     super(pos_, vel_);
     super.viewX = cam.viewX;
     super.viewY = cam.viewY;
     super.viewZ = cam.viewZ;
+    this.points = super.calcPoints(pos_, 20, 20, 45, 4);
+    this.triangles = super.calcTriangles(points, 45, 4, color(0));
   }
 
+  public void addToCamera (Camera c) {
+    super.addToCamera(c);
+  }
+  public ArrayList<Triangle> getTriangles () {
+    return triangles;
+  }
+  public void update (){
+  }
   @Override
     public void displayTethers() {
     super.screen.stroke(0);

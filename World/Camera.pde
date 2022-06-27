@@ -1,4 +1,4 @@
-public class Camera {
+public class Camera extends Sphere {
   private ArrayList<Triangle> triangles = new ArrayList<Triangle>();
   private PVector pos;
   private PVector vel;
@@ -12,6 +12,7 @@ public class Camera {
     this(width, height);
   }
   public Camera(int x, int y) {
+    super();
     this.pos = new PVector(0, 0, 0);
     this.vel = new PVector(0, 0, 0);
     this.screen = createGraphics(x, y);
