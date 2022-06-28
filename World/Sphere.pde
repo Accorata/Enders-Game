@@ -1,5 +1,5 @@
 public class Sphere implements Object {
-  private ArrayList<Triangle> triangles;
+  public ArrayList<Triangle> triangles;
   private PVector center;
   private float radius;
 

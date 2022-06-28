@@ -1,6 +1,5 @@
 public class Camera extends Sphere {
   private ArrayList<PVector> points;
-  private ArrayList<Triangle> triangles;
   private ArrayList<Triangle> screenTriangles = new ArrayList<Triangle>();
   private PVector pos;
   private PVector vel;
@@ -18,7 +17,7 @@ public class Camera extends Sphere {
     this.pos = new PVector(0, 0, 0);
     this.vel = new PVector(0, 0, 0);
     this.points = super.calcPoints(this.pos, 3, 3, 45, 4);
-    this.triangles = super.calcTriangles(this.points, 45, 4, color(0, 255, 0));
+    super.triangles = super.calcTriangles(this.points, 45, 4, color(0, 255, 0));
     this.screen = createGraphics(x, y);
     screen.beginDraw();
   }
@@ -28,6 +27,27 @@ public class Camera extends Sphere {
     this.vel = vel_;
   }
 
+  @Override
+    public void addToCamera (Camera c) {
+    super.addToCamera(c);
+  }
+  @Override
+    public ArrayList<Triangle> getTriangles () {
+    return super.triangles;
+  }
+  @Override
+    public void update () {
+    boolean push = near;
+    if (push) dir.mult(10);
+    //if (dir.mag() < speed*2) dir.div(10);
+    if (!test) {
+      boost(dir);
+      move();
+    } else {
+      move(dir);
+    }
+    if (push) dir.div(10);
+  }
   public void display(float x, float y, float w, float h) {
     screen.endDraw();
     noFill();

@@ -14,6 +14,7 @@ public boolean near = false;
 void setup () {
   size(800, 800);
   cam = new Camera();
+  world.add(cam);
   Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 10, 20);
   Sphere s2 = new Sphere (new PVector(-200, 0, 600), 100, color(200, 0, 0), 10, 20);
   addToWorld(s);
@@ -38,16 +39,6 @@ void draw () {
     currentDrone.display(450, height/2-150, 300, 300);
   }
   //showVisualization();
-  boolean push = near;
-  if (push) dir.mult(10);
-  //if (dir.mag() < speed*2) dir.div(10);
-  if (!test) {
-    cam.boost(dir);
-    cam.move();
-  } else {
-    cam.move(dir);
-  }
-  if (push) dir.div(10);
   println(frameRate);//+"   "+triangles.size());
 }
 
