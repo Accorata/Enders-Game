@@ -8,6 +8,7 @@ public class Camera extends Sphere {
   private PVector viewY = new PVector(0, 1, 0);
   private PVector viewZ = new PVector(0, 0, 1);
   private PGraphics screen;
+  private int behind;
 
   public Camera() {
     this(width, height);
@@ -85,6 +86,7 @@ public class Camera extends Sphere {
   }
   private boolean projTri (Triangle t) {
     ArrayList<PVector> points = new ArrayList<PVector>();
+    behind = 0;
     for (PVector point : t.getPoints()) {
       PVector projected = projPoint(point);
       if (projected == null) {
@@ -100,14 +102,27 @@ public class Camera extends Sphere {
   }
   private PVector projPoint(PVector point) {
     PVector movedPoint = point.copy().sub(pos);
+    PVector ans = new PVector (0, 0);
     float rotatedZ = movedPoint.dot(viewZ.copy().normalize());
-    if (rotatedZ < 0) return null;
+
     float rotatedX = movedPoint.dot(viewX.copy().normalize());
     float rotatedY = movedPoint.dot(viewY.copy().normalize());
-    PVector ans = new PVector (0, 0);
-    ans.x = (sight * -rotatedX/rotatedZ)+width/2;
-    ans.y = (sight * -rotatedY/rotatedZ)+height/2;
-    return ans;
+    try {
+      if (rotatedZ < 0) {
+        behind++;
+        if (behind == 3) return null;
+        ans.x = (sight * -rotatedX)+width/2;
+        ans.y = (sight * -rotatedY)+height/2;
+        return ans;
+      } else {
+        ans.x = (sight * -rotatedX/rotatedZ)+width/2;
+        ans.y = (sight * -rotatedY/rotatedZ)+height/2;
+        return ans;
+      }
+    } 
+    catch (Exception e) {
+      return null;
+    }
   }
   public void displayUI() {
     screen.strokeWeight(2);

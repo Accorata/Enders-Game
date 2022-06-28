@@ -16,9 +16,9 @@ void setup () {
   cam = new Camera();
   world.add(cam);
   Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 10, 20);
-  Sphere s2 = new Sphere (new PVector(-200, 0, 600), 100, color(200, 0, 0), 10, 20);
+  //Sphere s2 = new Sphere (new PVector(-200, 0, 600), 100, color(200, 0, 0), 10, 20);
   addToWorld(s);
-  addToWorld(s2);
+  //addToWorld(s2);
   addToWorld(new Sphere (new PVector(-200, 400, 600), 100, color(0, 0, 200), 10, 20));
   if (test) {
     speed *=1000;
