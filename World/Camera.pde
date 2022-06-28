@@ -1,5 +1,7 @@
 public class Camera extends Sphere {
-  private ArrayList<Triangle> triangles = new ArrayList<Triangle>();
+  private ArrayList<PVector> points;
+  private ArrayList<Triangle> triangles;
+  private ArrayList<Triangle> screenTriangles = new ArrayList<Triangle>();
   private PVector pos;
   private PVector vel;
   final float sight = 300;
@@ -15,6 +17,8 @@ public class Camera extends Sphere {
     super();
     this.pos = new PVector(0, 0, 0);
     this.vel = new PVector(0, 0, 0);
+    this.points = super.calcPoints(this.pos, 3, 3, 45, 4);
+    this.triangles = super.calcTriangles(this.points, 45, 4, color(0, 255, 0));
     this.screen = createGraphics(x, y);
     screen.beginDraw();
   }
@@ -35,18 +39,19 @@ public class Camera extends Sphere {
     screen.background(255, 150);
   }
   public void displayWorld() {
-    triangles = new ArrayList<Triangle>();
+    screenTriangles = new ArrayList<Triangle>();
     for (Object o : world) {
       if (o != this) {
         o.addToCamera(this);
       }
     }
-    Collections.sort(triangles);
+    Collections.sort(screenTriangles);
     screen.strokeWeight(1);
-    for (Triangle t : triangles) {
+    for (Triangle t : screenTriangles) {
       projTri(t);
     }
     displayTethers();
+    //println(screenTriangles.size());
   }
   public void displayTethers() {
     screen.stroke(0);
@@ -109,7 +114,7 @@ public class Camera extends Sphere {
     screen.text(""+near, 100, 100);
   }
   public void addTriangle (Triangle a) {
-    triangles.add(a);
+    screenTriangles.add(a);
   }
   public void rotateX (float deg) {
     viewY = rotateOn(viewY, viewX, deg);
@@ -149,6 +154,9 @@ public class Camera extends Sphere {
       }
     }
     pos.add(dir);
+    for (PVector point : points) {
+      point.add(dir);
+    }
     for (Sphere s : spheres) {
       if (s.isWithin(pos, 0)) {
         pos = s.displace(pos);

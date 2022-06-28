@@ -1,24 +1,24 @@
 public class Drone extends Camera implements Object {
-  private ArrayList<PVector> points;
-  private ArrayList<Triangle> triangles;
+  //private ArrayList<PVector> points;
+  //private ArrayList<Triangle> triangles;
 
   public Drone (PVector pos_, PVector vel_) {
     super(pos_, vel_);
     super.viewX = cam.viewX;
     super.viewY = cam.viewY;
     super.viewZ = cam.viewZ;
-    this.points = super.calcPoints(pos_, 3, 3, 45, 4);
-    this.triangles = super.calcTriangles(points, 45, 4, color(0));
+    super.points = super.calcPoints(pos_, 3, 3, 45, 4);
+    super.triangles = super.calcTriangles(super.points, 45, 4, color(0));
   }
-
+  
   public void addToCamera (Camera c) {
     super.addToCamera(c);
   }
   public ArrayList<Triangle> getTriangles () {
-    return this.triangles;
+    return super.triangles;
   }
   public void update () {
-    drone.move();
+    move();
   }
   @Override
     public void displayTethers() {
@@ -36,28 +36,28 @@ public class Drone extends Camera implements Object {
       super.screen.circle(playerPos.x, playerPos.y, 20);
     }
   }
-  @Override
-    public void move () {
-    move(super.vel);
-  }
-  @Override
-    public void move (PVector dir) {
-    super.pos.add(dir);
-    for (PVector point : points) {
-      point.add(dir);
-    }
-    for (Sphere s : spheres) {
-      if (s.isWithin(super.pos, 0)) {
-        super.pos = s.displace(super.pos);
-        PVector normal = s.getNormal(super.pos).normalize();
-        super.vel.div(2);
-        super.vel.add(project(super.vel, normal).setMag(super.vel.dot(normal)*2));
-      }
-    }
-  }
+  //@Override
+  //  public void move () {
+  //  move(super.vel);
+  //}
+  //@Override
+  //  public void move (PVector dir) {
+  //  super.pos.add(dir);
+  //  for (PVector point : points) {
+  //    point.add(dir);
+  //  }
+  //  for (Sphere s : spheres) {
+  //    if (s.isWithin(super.pos, 0)) {
+  //      super.pos = s.displace(super.pos);
+  //      PVector normal = s.getNormal(super.pos).normalize();
+  //      super.vel.div(2);
+  //      super.vel.add(project(super.vel, normal).setMag(super.vel.dot(normal)*2));
+  //    }
+  //  }
+  //}
   @Override
     public void display(float x, float y, float w, float h) {
-    //super.screen.filter(BLUR, dist(super.pos, cam.pos)/x);
+    //super.screen.filter(BLUR, dist(super.pos, cam.pos)/10);
     super.display(x, y, w, h);
   }
 }

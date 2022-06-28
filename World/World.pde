@@ -1,7 +1,7 @@
 import java.util.Collections;
 
 public Camera cam;
-public Drone drone;
+public Drone currentDrone;
 public ArrayList<Object> world = new ArrayList<Object>(); 
 public ArrayList<Sphere> spheres = new ArrayList<Sphere>();
 public ArrayList<Tether> tethers = new ArrayList<Tether>();
@@ -18,6 +18,7 @@ void setup () {
   Sphere s2 = new Sphere (new PVector(-200, 0, 600), 100, color(200, 0, 0), 10, 20);
   addToWorld(s);
   addToWorld(s2);
+  addToWorld(new Sphere (new PVector(-200, 400, 600), 100, color(0, 0, 200), 10, 20));
   if (test) {
     speed *=1000;
   }
@@ -32,9 +33,9 @@ void draw () {
   cam.displayWorld();
   cam.displayUI();
   cam.display(0, 0, width, height);
-  if (drone != null) {
-    drone.displayWorld();
-    drone.display(450, height/2-150, 300, 300);
+  if (currentDrone != null) {
+    currentDrone.displayWorld();
+    currentDrone.display(450, height/2-150, 300, 300);
   }
   //showVisualization();
   boolean push = near;
@@ -113,8 +114,12 @@ void keyPressed() {
     cam.vel = new PVector(0, 0, 0);
     break;
   case 'y':
-    drone = new Drone(cam.pos.copy(), cam.viewZ.copy().mult(2));
+    Drone drone = new Drone(cam.pos.copy(), cam.viewZ.copy().mult(2));
     world.add(drone);
+    currentDrone = drone;
+    break;
+  case 'h':
+    currentDrone = null;
     break;
   }
 }
