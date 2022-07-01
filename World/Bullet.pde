@@ -4,26 +4,27 @@ public class Bullet implements Object {
   PVector vel;
   
   public Bullet (PVector loc, PVector dir) {
-    this.points = calcPoints(loc, dir);
+    this.points = calcPoints(loc, cam.getView());
     this.triangles = calcTriangles(points, color(0));
     this.vel = dir;
   }
   
   public void addToCamera (Camera c) {
     for (Triangle t : triangles) {
-      t.updateClose(c);
+      c.addTriangle(t);
+      //t.updateClose(c);
     }
-    Collections.sort(triangles);
-    for (int i = (int) (triangles.size()/2); i<triangles.size(); i++) {
-      c.addTriangle(triangles.get(i));
-    }
+    //Collections.sort(triangles);
+    //for (int i = (int) (triangles.size()/2); i<triangles.size(); i++) {
+    //  c.addTriangle(triangles.get(i));
+    //}
   }
   public ArrayList<Triangle> getTriangles () {
     return this.triangles;
   }
   public void update () {
     for (PVector point : points) {
-      point.add(vel);
+      //point.add(vel);
     }
   }
   private ArrayList<PVector> calcPoints(PVector pos, PVector size) {
