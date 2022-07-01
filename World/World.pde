@@ -117,6 +117,7 @@ void keyPressed() {
     break;
   case 'q':
     cam.zoom = true;
+    //cam.zoomFactor += 5;
     break;
   }
 }
@@ -146,6 +147,7 @@ void keyReleased () {
     break;
   case 'q':
     cam.zoom = false;
+    //cam.zoomFactor = 100;
     break;
   }
 }

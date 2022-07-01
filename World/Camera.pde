@@ -9,7 +9,8 @@ public class Camera extends Sphere {
   private PVector viewZ = new PVector(0, 0, 1);
   private PGraphics screen;
   private int behind;
-  public boolean zoom = false;
+  private boolean zoom = false;
+  private float zoomFactor = 200;
 
   public Camera() {
     this(width, height);
@@ -68,7 +69,7 @@ public class Camera extends Sphere {
     screen.background(255, 150);
   }
   public void displayWorld() {
-    if (zoom) pos.add(viewZ.copy().mult(10));
+    if (zoom) pos.add(viewZ.copy().mult(zoomFactor));
     screenTriangles = new ArrayList<Triangle>();
     for (Object o : world) {
       if (o != this) {
@@ -82,7 +83,7 @@ public class Camera extends Sphere {
     }
     displayTethers();
     //println(screenTriangles.size());
-    if (zoom) pos.sub(viewZ.copy().mult(10));
+    if (zoom) pos.sub(viewZ.copy().mult(zoomFactor));
   }
   public void displayTethers() {
     screen.stroke(0);
