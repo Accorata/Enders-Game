@@ -15,6 +15,9 @@ public class Bullet implements Object {
     return this.triangles;
   }
   public void update () {
+    for (PVector point : points) {
+      point.add(vel);
+    }
   }
   private ArrayList<PVector> calcPoints(PVector pos, PVector size) {
     ArrayList<PVector> p = new ArrayList<PVector>();
