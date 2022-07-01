@@ -111,6 +111,16 @@ public class Camera extends Sphere {
       if (rotatedZ < 0) {
         behind++;
         if (behind == 3) return null;
+        //if (rotatedX < 0) {
+        //  ans.x = 0;//(sight/2 * rotatedX);
+        //} else {
+        //  ans.x = width;//(sight/2 * rotatedX)+width;
+        //}
+        //if (rotatedY < 0) {
+        //  ans.y = 0;//(sight/2 * rotatedY);
+        //} else {
+        //  ans.y = height;//(sight/2 * rotatedY)+height;
+        //}
         ans.x = (sight * -rotatedX)+width/2;
         ans.y = (sight * -rotatedY)+height/2;
         return ans;
