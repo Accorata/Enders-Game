@@ -6,7 +6,7 @@ public class Bullet implements Object {
   public Bullet (PVector loc, PVector dir) {
     this.points = calcPoints(loc, cam.getView());
     this.triangles = calcTriangles(points, color(0));
-    this.vel = dir.mult(3);
+    this.vel = dir.mult(10);
   }
   
   public void addToCamera (Camera c) {
