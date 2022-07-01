@@ -112,6 +112,9 @@ void keyPressed() {
   case 'h':
     currentDrone = null;
     break;
+  case 'e':
+    world.add(new Bullet(cam.pos, cam.viewZ));
+    break;
   }
 }
 
