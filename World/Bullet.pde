@@ -27,16 +27,16 @@ public class Bullet implements Object {
       //point.add(vel);
     }
   }
-  private ArrayList<PVector> calcPoints(PVector pos, PVector size) {
+  private ArrayList<PVector> calcPoints(PVector pos, PVector[] size) {
     ArrayList<PVector> p = new ArrayList<PVector>();
     p.add(pos);
-    p.add(new PVector(pos.x, pos.y+size.y, pos.z));
-    p.add(new PVector(pos.x+size.x, pos.y+size.y, pos.z));
-    p.add(new PVector(pos.x+size.x, pos.y, pos.z));
-    p.add(new PVector(pos.x+size.x, pos.y+size.y, pos.z+size.z));
-    p.add(new PVector(pos.x+size.x, pos.y, pos.z+size.z));  
-    p.add(new PVector(pos.x, pos.y+size.y, pos.z+size.z));
-    p.add(new PVector(pos.x, pos.y, pos.z+size.z));
+    p.add(pos.copy().add(size[1]));
+    p.add(pos.copy().add(size[0]).add(size[1]));
+    p.add(pos.copy().add(size[0]));
+    p.add(pos.copy().add(size[0]).add(size[1]).add(size[2]));
+    p.add(pos.copy().add(size[0]).add(size[2]));  
+    p.add(pos.copy().add(size[1]).add(size[2]));
+    p.add(pos.copy().add(size[2]));
     return p;
   }
   private ArrayList<Triangle> calcTriangles(ArrayList<PVector> points, color c) {

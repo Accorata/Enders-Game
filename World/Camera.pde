@@ -49,8 +49,12 @@ public class Camera extends Sphere {
     }
     if (push) dir.div(10);
   }
-  public PVector getView () {
-    return viewZ.copy().normalize().add(viewX.copy().normalize()).add(viewY.copy().normalize());
+  public PVector[] getView () {
+    PVector[] ans = new PVector[3];
+    ans[0] = viewX.copy();
+    ans[1] = viewY.copy();
+    ans[2] = viewZ.copy();
+    return ans;
   }
   public void display(float x, float y, float w, float h) {
     screen.endDraw();
