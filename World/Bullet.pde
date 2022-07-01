@@ -10,6 +10,13 @@ public class Bullet implements Object {
   }
   
   public void addToCamera (Camera c) {
+    for (Triangle t : triangles) {
+      t.updateClose(c);
+    }
+    Collections.sort(triangles);
+    for (int i = (int) (triangles.size()/2); i<triangles.size(); i++) {
+      c.addTriangle(triangles.get(i));
+    }
   }
   public ArrayList<Triangle> getTriangles () {
     return this.triangles;
