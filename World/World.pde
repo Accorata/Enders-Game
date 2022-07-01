@@ -115,6 +115,9 @@ void keyPressed() {
   case 'e':
     world.add(new Bullet(cam.pos.copy().sub(cam.viewX.copy().div(4)).sub(cam.viewY.copy().div(4)), cam.viewZ.copy()));
     break;
+  case 'q':
+    cam.zoom = true;
+    break;
   }
 }
 
@@ -140,6 +143,9 @@ void keyReleased () {
     break;
   case 'g':
     grab = false;
+    break;
+  case 'q':
+    cam.zoom = false;
     break;
   }
 }
