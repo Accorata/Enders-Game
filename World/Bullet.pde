@@ -4,11 +4,11 @@ public class Bullet implements Object {
   ArrayList<Triangle> triangles;
   PVector vel;
   
-  public Bullet (PVector loc, PVector dir) {
+  public Bullet (PVector loc, PVector dir, float speed) {
     this.points = calcPoints(loc, cam.getView());
     this.pos = loc;
     this.triangles = calcTriangles(points, color(0));
-    this.vel = dir.mult(10);
+    this.vel = dir.mult(speed);
   }
   
   public void addToCamera (Camera c) {

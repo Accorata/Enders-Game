@@ -13,6 +13,7 @@ float speed = 0.01;
 final boolean test = false;
 public boolean grab = false;
 public boolean near = false;
+public ArrayList<Item> inventory = new ArrayList<Item>();
 
 void setup () {
   size(800, 800);
@@ -124,7 +125,7 @@ void keyPressed() {
     currentDrone = null;
     break;
   case 'e':
-    Bullet bullet = new Bullet(cam.pos.copy().sub(cam.viewX.copy().div(4)).sub(cam.viewY.copy().div(4)), cam.viewZ.copy());
+    Bullet bullet = new Bullet(cam.pos.copy().sub(cam.viewX.copy().div(4)).sub(cam.viewY.copy().div(4)), cam.viewZ.copy(), 10);
     world.add(bullet);
     bullets.add(bullet);
     break;
