@@ -3,6 +3,15 @@ public interface Item {
 }
 
 public class Gun implements Item {
+  private float bulletSpeed;
+  
+  public Gun () {
+    this(10);
+  }
+  public Gun (float bulletSpeed_) {
+    this.bulletSpeed = bulletSpeed_;
+  }
+  
   public void use () {
     Bullet bullet = new Bullet(cam.pos.copy().sub(cam.viewX.copy().div(4)).sub(cam.viewY.copy().div(4)), cam.viewZ.copy(), bulletSpeed);
     world.add(bullet);

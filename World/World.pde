@@ -17,9 +17,9 @@ public ArrayList<Item> inventory = new ArrayList<Item>();
 public int current = 0;
 
 void setup () {
-  inventory.add(new Item());
-  inventory.add(new Item(3));
-  inventory.add(new Item(10));
+  inventory.add(new TetherGun());
+  inventory.add(new Gun(1));
+  inventory.add(new Gun());
   size(800, 800);
   cam = new Camera();
   world.add(cam);
