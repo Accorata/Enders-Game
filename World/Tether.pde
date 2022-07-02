@@ -83,6 +83,14 @@ public class Tether implements Object {
         }
       }
     }
+    for (Bullet b : bullets) {
+      if (b.isWithin(pos, 5)) {
+        destroyed.add(this);
+        tethers.remove(this);
+        destroyed.add(b);
+        destroyedBullets.add(b);
+      }
+    }
   }
   public PVector force(PVector loc) {
     PVector force = pos.copy().sub(loc);
