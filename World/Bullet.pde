@@ -25,10 +25,14 @@ public class Bullet implements Object {
       point.add(vel);
     }
     for (Sphere s : spheres) {
-      if (s.isWithin(pos, 0)) {
+      if (s.isWithin(pos, 2)) {
         destroyed.add(this);
+        bullets.remove(this);
       }
     }
+  }
+  public boolean isWithin (PVector loc, float flex) {
+    return dist(loc, pos) <= 2+flex;
   }
   private ArrayList<PVector> calcPoints(PVector pos, PVector[] size) {
     ArrayList<PVector> p = new ArrayList<PVector>();

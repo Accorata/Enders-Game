@@ -22,6 +22,16 @@ public class Drone extends Camera implements Object {
   @Override
     public void update () {
     move();
+    for (Bullet b : bullets) {
+      if (b.isWithin(super.pos, 10)) {
+        if (currentDrone == this) {
+          currentDrone = null;
+        }
+        destroyed.add(this);
+        destroyed.add(b);
+        destroyedBullets.add(b);
+      }
+    }
   }
   @Override
     public void displayTethers() {

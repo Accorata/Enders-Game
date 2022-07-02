@@ -6,6 +6,8 @@ public ArrayList<Object> world = new ArrayList<Object>();
 public ArrayList<Object> destroyed = new ArrayList<Object>(); 
 public ArrayList<Sphere> spheres = new ArrayList<Sphere>();
 public ArrayList<Tether> tethers = new ArrayList<Tether>();
+public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+public ArrayList<Bullet> destroyedBullets = new ArrayList<Bullet>(); 
 PVector dir = new PVector(0, 0, 0);
 float speed = 0.01;
 final boolean test = false;
@@ -28,6 +30,7 @@ void setup () {
 
 void draw () {
   destroyed = new ArrayList<Object>(); 
+  destroyedBullets = new ArrayList<Bullet>(); 
   background(255);
   for (Object o : world) {
     o.update();
@@ -44,6 +47,9 @@ void draw () {
   println(frameRate);//+"   "+triangles.size());
   for (Object o : destroyed) {
     world.remove(o);
+  }
+  for (Bullet b : destroyedBullets) {
+    bullets.remove(b);
   }
 }
 
@@ -118,7 +124,9 @@ void keyPressed() {
     currentDrone = null;
     break;
   case 'e':
-    world.add(new Bullet(cam.pos.copy().sub(cam.viewX.copy().div(4)).sub(cam.viewY.copy().div(4)), cam.viewZ.copy()));
+    Bullet bullet = new Bullet(cam.pos.copy().sub(cam.viewX.copy().div(4)).sub(cam.viewY.copy().div(4)), cam.viewZ.copy());
+    world.add(bullet);
+    bullets.add(bullet);
     break;
   case 'q':
     cam.zoom = true;
