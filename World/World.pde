@@ -3,6 +3,7 @@ import java.util.Collections;
 public Camera cam;
 public Drone currentDrone;
 public ArrayList<Object> world = new ArrayList<Object>(); 
+public ArrayList<Object> destroyed = new ArrayList<Object>(); 
 public ArrayList<Sphere> spheres = new ArrayList<Sphere>();
 public ArrayList<Tether> tethers = new ArrayList<Tether>();
 PVector dir = new PVector(0, 0, 0);
@@ -26,6 +27,7 @@ void setup () {
 }
 
 void draw () {
+  destroyed = new ArrayList<Object>(); 
   background(255);
   for (Object o : world) {
     o.update();
@@ -40,6 +42,9 @@ void draw () {
   }
   //showVisualization();
   println(frameRate);//+"   "+triangles.size());
+  for (Object o : destroyed) {
+    world.remove(o);
+  }
 }
 
 void keyPressed() {

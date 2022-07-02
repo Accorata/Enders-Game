@@ -1,10 +1,12 @@
 public class Bullet implements Object {
   ArrayList<PVector> points;
+  PVector pos;
   ArrayList<Triangle> triangles;
   PVector vel;
   
   public Bullet (PVector loc, PVector dir) {
     this.points = calcPoints(loc, cam.getView());
+    this.pos = loc;
     this.triangles = calcTriangles(points, color(0));
     this.vel = dir.mult(10);
   }
@@ -18,8 +20,14 @@ public class Bullet implements Object {
     return this.triangles;
   }
   public void update () {
+    pos.add(vel);
     for (PVector point : points) {
       point.add(vel);
+    }
+    for (Sphere s : spheres) {
+      if (s.isWithin(pos, 0)) {
+        destroyed.add(this);
+      }
     }
   }
   private ArrayList<PVector> calcPoints(PVector pos, PVector[] size) {
