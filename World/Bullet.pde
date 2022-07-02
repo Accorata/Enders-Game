@@ -3,14 +3,14 @@ public class Bullet implements Object {
   PVector pos;
   ArrayList<Triangle> triangles;
   PVector vel;
-  
+
   public Bullet (PVector loc, PVector dir, float speed) {
     this.points = calcPoints(loc, cam.getView());
     this.pos = loc;
     this.triangles = calcTriangles(points, color(0));
     this.vel = dir.mult(speed);
   }
-  
+
   public void addToCamera (Camera c) {
     for (Triangle t : triangles) {
       c.addTriangle(t);
@@ -30,6 +30,9 @@ public class Bullet implements Object {
         bullets.remove(this);
       }
     }
+  }
+  public boolean moveable() {
+    return true;
   }
   public boolean isWithin (PVector loc, float flex) {
     return dist(loc, pos) <= 2+flex;

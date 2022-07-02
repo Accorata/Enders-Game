@@ -27,6 +27,9 @@ public class Sphere implements Object {
   }
   public void update () {
   }
+  public boolean moveable() {
+    return false;
+  }
   public boolean isWithin (PVector loc, float flex) {
     return dist(loc, center) <= radius+flex;
   }

@@ -1,4 +1,4 @@
-public class Camera extends Sphere {
+public class Camera extends Sphere implements Object {
   private ArrayList<PVector> points;
   private ArrayList<Triangle> screenTriangles = new ArrayList<Triangle>();
   private PVector pos;
@@ -50,6 +50,10 @@ public class Camera extends Sphere {
       move(dir);
     }
     if (push) dir.div(10);
+  }
+  @Override
+    public boolean moveable() {
+    return true;
   }
   public PVector[] getView () {
     PVector[] ans = new PVector[3];
