@@ -33,6 +33,9 @@ public class Sphere implements Object {
   public boolean isWithin (PVector loc, float flex) {
     return dist(loc, center) <= radius+flex;
   }
+  public PVector getPos() {
+    return this.center;
+  }
   public PVector getNormal (PVector loc) {
     return loc.copy().sub(center);
   }

@@ -34,6 +34,9 @@ public class Bullet implements Object {
   public boolean moveable() {
     return true;
   }
+  public PVector getPos() {
+    return this.pos;
+  }
   public boolean isWithin (PVector loc, float flex) {
     return dist(loc, pos) <= 2+flex;
   }

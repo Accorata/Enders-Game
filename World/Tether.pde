@@ -97,6 +97,9 @@ public class Tether implements Object {
   public boolean moveable() {
     return true;
   }
+  public PVector getPos() {
+    return this.pos;
+  }
   public PVector force(PVector loc) {
     PVector force = pos.copy().sub(loc);
     this.displacement = force.mag() - len;

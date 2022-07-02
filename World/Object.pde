@@ -3,4 +3,5 @@ public interface Object {
   public ArrayList<Triangle> getTriangles ();
   public void update ();
   public boolean moveable();
+  public PVector getPos();
 }

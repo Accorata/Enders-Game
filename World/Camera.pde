@@ -55,6 +55,10 @@ public class Camera extends Sphere implements Object {
     public boolean moveable() {
     return true;
   }
+  @Override
+    public PVector getPos() {
+    return this.pos;
+  }
   public PVector[] getView () {
     PVector[] ans = new PVector[3];
     ans[0] = viewX.copy().setMag(0.5);

@@ -1,4 +1,6 @@
 public class Magnet extends Sphere implements Object {
+  private float pullRadius = 100;
+  
   public void addToCamera (Camera c) {
     super.addToCamera(c);
   }
@@ -8,9 +10,17 @@ public class Magnet extends Sphere implements Object {
   @Override
     public void update () {
     super.update();
+    for (Object o : world) {
+      if (o.moveable() && isNear(o.getPos())) {
+        o.vel.add(new PVector(0,0,1));
+      }
+    }
   }
   @Override
     public boolean moveable() {
     return false;
+  }
+  public boolean isNear (PVector loc) {
+    return dist(loc, super.center) <= pullRadius;
   }
 }
