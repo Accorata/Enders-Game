@@ -48,6 +48,7 @@ void draw () {
     currentDrone.displayWorld();
     currentDrone.display(450, height/2-150, 300, 300);
   }
+  inventory.get(current).display();
   //showVisualization();
   println(frameRate);//+"   "+triangles.size());
   for (Object o : destroyed) {
