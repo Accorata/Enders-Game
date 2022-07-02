@@ -140,6 +140,15 @@ void keyPressed() {
   case 'c':
     inventory.get(current).use();
     break;
+  case '1':
+    current = 0;
+    break;
+  case '2':
+    current = 1;
+    break;
+  case '3':
+    current = 2;
+    break;
   }
 }
 
