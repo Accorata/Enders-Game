@@ -32,7 +32,7 @@ public class Bullet implements Object {
   }
   private ArrayList<PVector> calcPoints(PVector pos, PVector[] size) {
     ArrayList<PVector> p = new ArrayList<PVector>();
-    p.add(pos);
+    p.add(pos.copy());
     p.add(pos.copy().add(size[1]));
     p.add(pos.copy().add(size[0]).add(size[1]));
     p.add(pos.copy().add(size[0]));
