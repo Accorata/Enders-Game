@@ -14,8 +14,12 @@ final boolean test = false;
 public boolean grab = false;
 public boolean near = false;
 public ArrayList<Item> inventory = new ArrayList<Item>();
+public int current = 0;
 
 void setup () {
+  inventory.add(new Item());
+  inventory.add(new Item(3));
+  inventory.add(new Item(10));
   size(800, 800);
   cam = new Camera();
   world.add(cam);
@@ -132,6 +136,9 @@ void keyPressed() {
   case 'q':
     cam.zoom = true;
     //cam.zoomFactor += 5;
+    break;
+  case 'c':
+    inventory.get(current).use();
     break;
   }
 }
