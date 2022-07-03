@@ -1,5 +1,6 @@
 public class Magnet extends Sphere implements Object {
   private float pullRadius = 100;
+  private float pullStrength = 0.05;
 
   public Magnet(PVector pos, float radius, color clr, int angle, int rows) {
     super(pos, radius, clr, angle, rows);
@@ -16,7 +17,7 @@ public class Magnet extends Sphere implements Object {
     super.update();
     for (Object o : world) {
       if (o.moveable() && isNear(o.getPos())) {
-        o.accelerate(super.getNormal(o.getPos()).setMag(-1));
+        o.accelerate(super.getNormal(o.getPos()).setMag(-pullStrength));
       }
     }
   }
