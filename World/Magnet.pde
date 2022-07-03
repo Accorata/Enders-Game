@@ -12,13 +12,16 @@ public class Magnet extends Sphere implements Object {
     super.update();
     for (Object o : world) {
       if (o.moveable() && isNear(o.getPos())) {
-        o.vel.add(new PVector(0,0,1));
+        //o.vel.add(new PVector(0,0,1));
       }
     }
   }
   @Override
     public boolean moveable() {
     return false;
+  }
+  @Override
+    public void accelerate (PVector a) {
   }
   public boolean isNear (PVector loc) {
     return dist(loc, super.center) <= pullRadius;

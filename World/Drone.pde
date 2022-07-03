@@ -42,6 +42,10 @@ public class Drone extends Camera implements Object {
     return super.pos;
   }
   @Override
+    public void accelerate (PVector a) {
+    super.vel.add(a);
+  }
+  @Override
     public void displayTethers() {
     super.screen.stroke(0);
     PVector playerPos = super.projPoint(cam.pos);

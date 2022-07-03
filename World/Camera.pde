@@ -59,6 +59,10 @@ public class Camera extends Sphere implements Object {
     public PVector getPos() {
     return this.pos;
   }
+  @Override
+    public void accelerate (PVector a) {
+    this.vel.add(a);
+  }
   public PVector[] getView () {
     PVector[] ans = new PVector[3];
     ans[0] = viewX.copy().setMag(0.5);

@@ -3,7 +3,7 @@ public class Tether implements Object {
   private float displacement;
   private float springConst = 0.001;
   private PVector pos;
-  //private PVector vel;
+  private PVector vel;
   private PVector dir;
   private ArrayList<PVector> points;
   private ArrayList<Triangle> triangles;
@@ -14,7 +14,7 @@ public class Tether implements Object {
     this.pos = pos_;
     this.points = calcPoints(dir);
     this.triangles = calcTriangles(points);
-    //this.vel = dir.copy().add(cam.vel.copy());
+    this.vel = dir.copy();
   }
 
   private ArrayList<PVector> calcPoints(PVector dir) {
@@ -72,9 +72,9 @@ public class Tether implements Object {
   }
   public void update () {
     if (!attached) {
-      pos.add(dir);
+      pos.add(vel);
       for (PVector point : points) {
-        point.add(dir);
+        point.add(vel);
       }
       for (Sphere s : spheres) {
         if (s.isWithin(pos, 0)) {
@@ -98,7 +98,10 @@ public class Tether implements Object {
     return true;
   }
   public PVector getPos() {
-    return this.pos;
+    return this.pos.copy().add(this.dir.copy().div(-1.5));
+  }
+  public void accelerate (PVector a) {
+    this.vel.add(a);
   }
   public PVector force(PVector loc) {
     PVector force = pos.copy().sub(loc);
@@ -107,8 +110,5 @@ public class Tether implements Object {
     force.mult(displacement);
     force.mult(springConst);
     return force;
-  }
-  public PVector getPos() {
-    return this.pos.copy().add(this.dir.copy().div(-1.5));
   }
 }

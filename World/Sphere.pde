@@ -36,6 +36,8 @@ public class Sphere implements Object {
   public PVector getPos() {
     return this.center;
   }
+  public void accelerate (PVector a) {
+  }
   public PVector getNormal (PVector loc) {
     return loc.copy().sub(center);
   }
