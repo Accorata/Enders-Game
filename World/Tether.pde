@@ -95,7 +95,7 @@ public class Tether implements Object {
     }
   }
   public boolean moveable() {
-    return true;
+    return !attached;
   }
   public PVector getPos() {
     return this.pos.copy().add(this.dir.copy().div(-1.5));
