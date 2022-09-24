@@ -37,6 +37,9 @@ public class Bullet implements Object {
   public PVector getPos() {
     return this.pos;
   }
+  public PVector getVel() {
+    return this.vel;
+  }
   public void accelerate (PVector a) {
     this.vel.add(a);
   }

@@ -4,5 +4,6 @@ public interface Object {
   public void update ();
   public boolean moveable ();
   public PVector getPos ();
+  public PVector getVel ();
   public void accelerate (PVector a);
 }

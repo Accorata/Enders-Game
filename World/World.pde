@@ -27,9 +27,11 @@ void setup () {
   //Sphere s2 = new Sphere (new PVector(-200, 0, 600), 100, color(200, 0, 0), 10, 20);
   addToWorld(s);
   //addToWorld(s2);
-  addToWorld(new Sphere (new PVector(-200, 400, 600), 100, color(0, 0, 200), 10, 20));
+  Sphere a = new MovingSphere (new PVector(-200, 400, 600), 100, color(0, 0, 200), 10, 20);
+  a.accelerate(new PVector(0.5,0,0));
+  addToWorld(a);
   addToWorld(new Magnet (new PVector(-600, 100, 100), 10, color(0, 200, 0), 10, 20));
-  addToWorld(new Mirror (new PVector(300, 300, 0), new PVector(100, 100, 0)));
+ // addToWorld(new Mirror (new PVector(300, 300, 0), new PVector(100, 100, 0)));
   if (test) {
     speed *=1000;
   }
@@ -115,7 +117,7 @@ void keyPressed() {
     break;
   case 'f':
     for (Tether t : tethers) {
-      if (t.attached) {
+      if (t.attached != null) {
         cam.setDirTowards(t.pos.copy().sub(cam.pos), 0.3);
       }
     }

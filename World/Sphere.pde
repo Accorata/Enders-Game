@@ -36,6 +36,9 @@ public class Sphere implements Object {
   public PVector getPos() {
     return this.center;
   }
+  public PVector getVel() {
+    return null;
+  }
   public void accelerate (PVector a) {
   }
   public PVector getNormal (PVector loc) {
@@ -52,7 +55,7 @@ public class Sphere implements Object {
     for (int theta = angle; theta < 180; theta+=angle) {
       float rSin = xzRadius*sin(radians(theta));
       float rCos = yRadius*cos(radians(theta));
-      for (int phi = 0; phi < 360; phi += rowAngle) {      
+      for (int phi = 0; phi < 360; phi += rowAngle) {
         float sinP = sin(radians(phi));
         float cosP = cos(radians(phi));
         points.add(new PVector(pos.x+rSin*cosP, pos.y+rCos, pos.z+rSin*sinP));

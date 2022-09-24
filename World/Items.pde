@@ -28,7 +28,7 @@ public class Gun implements Item {
 public class TetherGun implements Item {
   public void use () {
     for (Tether t : tethers) {
-      if (t.attached) {
+      if (t.attached != null) {
         cam.setDirTowards(t.pos.copy().sub(cam.pos), 0.3);
       }
     }

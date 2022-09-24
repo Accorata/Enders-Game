@@ -7,7 +7,7 @@ public class Tether implements Object {
   private PVector dir;
   private ArrayList<PVector> points;
   private ArrayList<Triangle> triangles;
-  private boolean attached = false;
+  private Object attached = null;
 
   public Tether (PVector pos_, PVector dir_) {
     this.dir = dir_;
@@ -71,20 +71,27 @@ public class Tether implements Object {
     return this.triangles;
   }
   public void update () {
-    if (!attached) {
-      pos.add(vel);
-      for (PVector point : points) {
-        point.add(vel);
-      }
-      for (Sphere s : spheres) {
-        if (s.isWithin(pos, 0)) {
-          this.pos = s.displace(pos);
-          attached = true;
-          len =  dist(pos, cam.pos);
-          if (len < 200) len = 200;
-        }
+    if (attached != null) {
+      if (attached.moveable()) {
+        vel = attached.getVel();
+      } else {
+        vel = new PVector(0, 0, 0);
       }
     }
+    //if (!attached) {
+    pos.add(vel);
+    for (PVector point : points) {
+      point.add(vel);
+    }
+    for (Sphere s : spheres) {
+      if (s.isWithin(pos, 0)) {
+        this.pos = s.displace(pos);
+        attached = s;
+        len =  dist(pos, cam.pos);
+        if (len < 200) len = 200;
+      }
+    }
+    //}
     for (Bullet b : bullets) {
       if (b.isWithin(pos, 5)) {
         destroyed.add(this);
@@ -95,10 +102,16 @@ public class Tether implements Object {
     }
   }
   public boolean moveable() {
-    return !attached;
+    if (attached == null) {
+      return false;
+    }
+    return attached.moveable();
   }
   public PVector getPos() {
     return this.pos.copy().add(this.dir.copy().div(-1.5));
+  }
+  public PVector getVel() {
+    return this.vel;
   }
   public void accelerate (PVector a) {
     this.vel.add(a);

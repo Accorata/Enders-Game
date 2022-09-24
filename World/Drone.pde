@@ -42,6 +42,10 @@ public class Drone extends Camera implements Object {
     return super.pos;
   }
   @Override
+    public PVector getVel() {
+    return super.vel;
+  }
+  @Override
     public void accelerate (PVector a) {
     super.vel.add(a);
   }

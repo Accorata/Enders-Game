@@ -60,6 +60,10 @@ public class Camera extends Sphere implements Object {
     return this.pos;
   }
   @Override
+    public PVector getVel() {
+    return this.vel;
+  }
+  @Override
     public void accelerate (PVector a) {
     this.vel.add(a);
   }
@@ -152,7 +156,7 @@ public class Camera extends Sphere implements Object {
         ans.y = (sight * -rotatedY/rotatedZ)+height/2;
         return ans;
       }
-    } 
+    }
     catch (Exception e) {
       return null;
     }
@@ -204,7 +208,7 @@ public class Camera extends Sphere implements Object {
     translated.add(viewX.copy().mult(dir.x));
     translated.add(viewY.copy().mult(dir.y));
     translated.add(viewZ.copy().mult(dir.z));
-    vel.add(translated);
+    this.accelerate(translated);
   }
   public void setDirTowards (PVector dir, float speed) {
     vel.div(1.1);
@@ -234,7 +238,7 @@ public class Camera extends Sphere implements Object {
       }
     }
     for (Tether t : tethers) {
-      if (t.attached) {
+      if (t.attached != null) {
         dir.add(t.force(pos));
       }
     }
