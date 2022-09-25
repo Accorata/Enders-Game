@@ -47,11 +47,12 @@ void draw () {
   destroyed = new ArrayList<Object>(); 
   destroyedBullets = new ArrayList<Bullet>(); 
   background(255);
-  s.recalcDetail(cam.getPos());
+  //s.recalcDetail(cam.getPos());
   for (Object o : world) {
     o.update();
   }
   setLight();
+  cam.rotateByMouse();
   cam.displayWorld();
   cam.displayUI();
   cam.display(0, 0, width, height);

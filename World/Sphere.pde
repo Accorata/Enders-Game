@@ -52,7 +52,8 @@ public class Sphere implements Object {
 
   public void recalcDetail (PVector loc) {
     int angle = 10;
-    int rows = (int)(1000/(loc.copy().sub(center).mag()));
+    println ((int)(5000/(loc.copy().sub(center).mag())));
+    int rows = max(10, (int)(500/(loc.copy().sub(center).mag())));
     ArrayList<PVector> ps = calcPoints(this.center, this.radius, this.radius, angle, rows);
     this.triangles = calcTriangles(ps, angle, rows, this.clr);
   }

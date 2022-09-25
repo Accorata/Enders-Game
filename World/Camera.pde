@@ -1,3 +1,7 @@
+private PVector mouse = new PVector(width/2, height/2);
+private PVector mouseOld = new PVector(width/2, height/2);
+private float sensitivity = 100; 
+
 public class Camera extends Sphere implements Object {
   private ArrayList<PVector> points;
   private ArrayList<Triangle> screenTriangles = new ArrayList<Triangle>();
@@ -169,8 +173,8 @@ public class Camera extends Sphere implements Object {
     screen.noFill();
     screen.circle(width/2, height/2, 700);
     Sphere closest = cam.checkNear();
-    near = (closest != null);
-    if (near) {
+    //near = (closest != null);
+    if (closest != null) {
       PVector norm = closest.center;
       PVector translated = projPoint(norm);
       //new PVector(0, 0, 0);
@@ -183,7 +187,7 @@ public class Camera extends Sphere implements Object {
       }
     }
     screen.fill(0);
-    screen.text(""+near, 100, 100);
+    screen.text(""+(closest != null), 100, 100);
   }
   public void addTriangle (Triangle a) {
     screenTriangles.add(a);
@@ -202,6 +206,18 @@ public class Camera extends Sphere implements Object {
     viewX = rotateOn(viewX, viewZ, deg);
     viewY = rotateOn(viewY, viewZ, deg);
     viewZ = rotateOn(viewZ, viewZ, deg);
+  }
+  public void rotateByMouse() {
+    float xRotate = (height/2-mouse.y)*1/sensitivity;
+    float yRotate = (mouse.x-width/2)*1/sensitivity;
+    rotateX(xRotate);
+    rotateY(yRotate);
+    mouse.x -= (mouse.x-width/2)/20;
+    mouse.y -= (mouse.y-height/2)/20;
+    mouse.x += mouseX-mouseOld.x;
+    mouse.y += mouseY-mouseOld.y;
+    mouseOld.x = mouseX;
+    mouseOld.y = mouseY;
   }
   public void boost (PVector dir) {
     PVector translated = new PVector(0, 0, 0);
