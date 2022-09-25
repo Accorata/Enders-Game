@@ -17,6 +17,7 @@ public ArrayList<Item> inventory = new ArrayList<Item>();
 public int current = 0;
 
 public Sphere a;
+public Sphere s;
 
 void setup () {
   inventory.add(new TetherGun());
@@ -25,12 +26,15 @@ void setup () {
   size(800, 800);
   cam = new Camera();
   world.add(cam);
-  Sphere s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 10, 20);
+  s = new Sphere (new PVector(0, 0, 400), 100, color(200, 0, 0), 10, 20);
   //Sphere s2 = new Sphere (new PVector(-200, 0, 600), 100, color(200, 0, 0), 10, 20);
   addToWorld(s);
   //addToWorld(s2);
   a = new MovingSphere (new PVector(-200, 400, 600), 100, color(0, 0, 200), 10, 20);
   addToWorld(a);
+  //Sphere b = new MovingSphere (new PVector(0, 0, 600), 100, color(0, 200, 0), 10, 20);
+  //b.accelerate(new PVector(0, 0, -10));
+  //addToWorld(b);
   addToWorld(new Magnet (new PVector(-600, 100, 100), 10, color(0, 200, 0), 10, 20));
  // addToWorld(new Mirror (new PVector(300, 300, 0), new PVector(100, 100, 0)));
   if (test) {
@@ -43,6 +47,7 @@ void draw () {
   destroyed = new ArrayList<Object>(); 
   destroyedBullets = new ArrayList<Bullet>(); 
   background(255);
+  s.recalcDetail(cam.getPos());
   for (Object o : world) {
     o.update();
   }

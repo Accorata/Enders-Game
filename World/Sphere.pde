@@ -2,12 +2,14 @@ public class Sphere implements Object {
   public ArrayList<Triangle> triangles;
   private PVector center;
   private float radius;
+  private color clr;
 
   public Sphere () {
   }
   public Sphere(PVector pos, float radius, color clr, int angle, int rows) {
     this.center = pos;
     this.radius = radius;
+    this.clr = clr;
     ArrayList<PVector> ps = calcPoints(pos, radius, radius, angle, rows);
     this.triangles = calcTriangles(ps, angle, rows, clr);
   }
@@ -48,6 +50,12 @@ public class Sphere implements Object {
     return center.copy().add(getNormal(loc).setMag(radius+0.01));
   }
 
+  public void recalcDetail (PVector loc) {
+    int angle = 10;
+    int rows = (int)(1000/(loc.copy().sub(center).mag()));
+    ArrayList<PVector> ps = calcPoints(this.center, this.radius, this.radius, angle, rows);
+    this.triangles = calcTriangles(ps, angle, rows, this.clr);
+  }
   public ArrayList<PVector> calcPoints (PVector pos, float yRadius, float xzRadius, int angle, int rows) {
     ArrayList<PVector> points = new ArrayList<PVector>();
     int rowAngle = 360/rows;
